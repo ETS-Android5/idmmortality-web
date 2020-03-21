@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { IonContent, IonPage, IonHeader, IonToolbar, IonButtons, IonButton, IonSlides, IonSlide, IonIcon } from '@ionic/react';
 import { arrowForward } from 'ionicons/icons';
 import { setHasSeenTutorial } from '../data/user/user.actions';
-import './Tutorial.scss';
+import './css/Tutorial.scss';
 import { connect } from '../data/connect';
 import { RouteComponentProps } from 'react-router';
 

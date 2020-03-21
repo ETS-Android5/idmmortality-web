@@ -2,7 +2,7 @@
 
 ## Issues y TODOs
 
-1 - Añadir i18n
+1 - Añadir i18n - branched
 2 - Modificar la carga de tutorial desde el menú o quitarla para que no desaparezca el menú lateral
 3 - Setear el modo oscuro por defecto y colocarlo en un botoncito tipo majoledesma, que cosa mas bonita ella.
 
@@ -10,6 +10,8 @@
 5 - Modificar el flujo de usuarios y sesiones , a usuarios, proyectos, templates y tags.
 
 6 - Intentar implementar Quantic a nivel puramente funcional con una arquitectura agnostica al frontend, mediante el uso de Stencil.
+
+7- Añadir registro persistente con firebase - branched
 
 ## Github Pages Demo - Firabase Hosting Demo
 

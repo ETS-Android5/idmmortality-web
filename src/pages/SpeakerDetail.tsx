@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 import { IonIcon, IonHeader, IonToolbar, IonButtons, IonTitle, IonContent, IonButton, IonBackButton, IonPage } from '@ionic/react'
-import './SpeakerDetail.scss';
+import './css/SpeakerDetail.scss';
 import { logoTwitter, logoGithub, logoInstagram } from 'ionicons/icons';
 import { connect } from '../data/connect';
 import * as selectors from '../data/selectors';

@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButtons, IonMenuButton, IonButton, IonIcon, IonDatetime, IonSelectOption, IonList, IonItem, IonLabel, IonSelect, IonPopover } from '@ionic/react';
-import './About.scss';
-import { calendar, pin, more } from 'ionicons/icons';
-import AboutPopover from '../components/AboutPopover';
+import React, { useState } from "react";
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonPage,
+  IonButtons,
+  IonMenuButton,
+  IonButton,
+  IonIcon,
+  IonDatetime,
+  IonSelectOption,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonSelect,
+  IonPopover
+} from "@ionic/react";
+import "./css/About.scss";
+import { calendar, pin, more } from "ionicons/icons";
+import AboutPopover from "../components/AboutPopover";
 
-interface AboutProps { }
+interface AboutProps {}
 
 const About: React.FC<AboutProps> = () => {
-
   const [showPopover, setShowPopover] = useState(false);
   const [popoverEvent, setPopoverEvent] = useState();
 
@@ -15,7 +31,7 @@ const About: React.FC<AboutProps> = () => {
     setPopoverEvent(e.nativeEvent);
     setShowPopover(true);
   };
-  const conferenceDate = '2047-05-17';
+  const conferenceDate = "2047-05-17";
 
   return (
     <IonPage id="about-page">
@@ -33,7 +49,6 @@ const About: React.FC<AboutProps> = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-
         <div className="about-header">
           <img src="assets/img/ionic-logo-white.svg" alt="ionic logo" />
         </div>
@@ -44,14 +59,20 @@ const About: React.FC<AboutProps> = () => {
             <IonItem>
               <IonIcon icon={calendar} slot="start"></IonIcon>
               <IonLabel position="stacked">Date</IonLabel>
-              <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={conferenceDate}></IonDatetime>
+              <IonDatetime
+                displayFormat="MMM DD, YYYY"
+                max="2056"
+                value={conferenceDate}
+              ></IonDatetime>
             </IonItem>
 
             <IonItem>
               <IonIcon icon={pin} slot="start"></IonIcon>
               <IonLabel position="stacked">Location</IonLabel>
               <IonSelect>
-                <IonSelectOption value="madison" selected>Madison, WI</IonSelectOption>
+                <IonSelectOption value="madison" selected>
+                  Madison, WI
+                </IonSelectOption>
                 <IonSelectOption value="austin">Austin, TX</IonSelectOption>
                 <IonSelectOption value="chicago">Chicago, IL</IonSelectOption>
                 <IonSelectOption value="seattle">Seattle, WA</IonSelectOption>
@@ -60,10 +81,13 @@ const About: React.FC<AboutProps> = () => {
           </IonList>
 
           <p className="ion-padding-start ion-padding-end">
-            The Ionic Conference is a one-day conference featuring talks from the Ionic team. It is focused on Ionic applications being
-            built with Ionic 2. This includes migrating apps from Ionic 1 to Ionic 2, Angular concepts, Webpack, Sass, and many
-            other technologies used in Ionic 2. Tickets are completely sold out, and we’re expecting more than 1000 developers
-            – making this the largest Ionic conference ever!
+            The Ionic Conference is a one-day conference featuring talks from
+            the Ionic team. It is focused on Ionic applications being built with
+            Ionic 2. This includes migrating apps from Ionic 1 to Ionic 2,
+            Angular concepts, Webpack, Sass, and many other technologies used in
+            Ionic 2. Tickets are completely sold out, and we’re expecting more
+            than 1000 developers – making this the largest Ionic conference
+            ever!
           </p>
         </div>
       </IonContent>
@@ -72,7 +96,7 @@ const About: React.FC<AboutProps> = () => {
         event={popoverEvent}
         onDidDismiss={() => setShowPopover(false)}
       >
-        <AboutPopover dismiss={() => setShowPopover(false)} /> 
+        <AboutPopover dismiss={() => setShowPopover(false)} />
       </IonPopover>
     </IonPage>
   );

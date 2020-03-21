@@ -4,7 +4,7 @@ import { connect } from '../data/connect';
 import { options } from 'ionicons/icons';
 import SessionList from '../components/SessionList';
 import SessionListFilter from '../components/SessionListFilter';
-import './SchedulePage.scss'
+import './css/SchedulePage.scss'
 import * as selectors from '../data/selectors';
 import { setSearchText, addFavorite, removeFavorite } from '../data/sessions/sessions.actions';
 import ShareSocialFab from '../components/ShareSocialFab';

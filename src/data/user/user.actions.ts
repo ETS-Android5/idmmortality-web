@@ -33,11 +33,28 @@ export const setIsLoggedIn = (loggedIn: boolean) => async (dispatch: React.Dispa
   } as const)
 };
 
+export const setUseremail = (useremail?: string) => async (dispatch: React.Dispatch<any>) => {
+  await setUseremailData(useremail);
+  return ({
+    type: 'set-useremail',
+    useremail
+  } as const);
+};
+
 export const setUsername = (username?: string) => async (dispatch: React.Dispatch<any>) => {
   await setUsernameData(username);
   return ({
     type: 'set-username',
     username
+  } as const);
+};
+
+
+export const setPassword = (password?: string) => async (dispatch: React.Dispatch<any>) => {
+  await setPasswordData(password);
+  return ({
+    type: 'set-password',
+    password
   } as const);
 };
 
@@ -58,6 +75,9 @@ export type UserActions =
   | ActionType<typeof setLoading>
   | ActionType<typeof setData>
   | ActionType<typeof setIsLoggedIn>
+  | ActionType<typeof setPassword>
+  | ActionType<typeof setUseremail>
   | ActionType<typeof setUsername>
   | ActionType<typeof setHasSeenTutorial>
   | ActionType<typeof setDarkMode>
+  
