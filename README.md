@@ -4,14 +4,16 @@
 
 1 - Añadir i18n - branched
 2 - Modificar la carga de tutorial desde el menú o quitarla para que no desaparezca el menú lateral
-3 - Setear el modo oscuro por defecto y colocarlo en un botoncito tipo majoledesma, que cosa mas bonita ella.
+
+3 - Setear el modo oscuro por defecto y colocarlo en un botoncito tipo majoledesma, que cosa mas bonita ella. ==> DONE
 
 4 - Una vez añadido i18n para N idiomas, configurar el signup y el login con firebase.
 5 - Modificar el flujo de usuarios y sesiones , a usuarios, proyectos, templates y tags.
 
 6 - Intentar implementar Quantic a nivel puramente funcional con una arquitectura agnostica al frontend, mediante el uso de Stencil.
 
-7- Añadir registro persistente con firebase - branched
+7- Añadir registro persistente con firebase  usando 8 - branched ==> DOING 
+8- Añadir inicio de sesión con cuentas de otros serivios
 
 ## Github Pages Demo - Firabase Hosting Demo
 

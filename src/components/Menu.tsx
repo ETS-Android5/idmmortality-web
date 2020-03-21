@@ -11,37 +11,48 @@ import {
   IonTitle,
   IonToolbar,
   IonToggle
-} from '@ionic/react';
-import { calendar, contacts, hammer, help, informationCircle, logIn, logOut, map, person, personAdd } from 'ionicons/icons';
-import React, { useState } from 'react';
-import { connect } from '../data/connect';
-import { RouteComponentProps, withRouter } from 'react-router';
-import { setDarkMode } from '../data/user/user.actions';
+} from "@ionic/react";
+import {
+  calendar,
+  contacts,
+  hammer,
+  help,
+  informationCircle,
+  logIn,
+  logOut,
+  map,
+  person,
+  personAdd
+} from "ionicons/icons";
+import React, { useState } from "react";
+import { connect } from "../data/connect";
+import { RouteComponentProps, withRouter } from "react-router";
+import { setDarkMode } from "../data/user/user.actions";
 
 const routes = {
   appPages: [
-    { title: 'Schedule', path: '/tabs/schedule', icon: calendar },
+    /* { title: 'Schedule', path: '/tabs/schedule', icon: calendar },
     { title: 'Speakers', path: '/tabs/speakers', icon: contacts },
     { title: 'Map', path: '/tabs/map', icon: map },
-    { title: 'About', path: '/tabs/about', icon: informationCircle }
+    { title: 'About', path: '/tabs/about', icon: informationCircle }*/
   ],
   loggedInPages: [
-    { title: 'Account', path: '/account', icon: person },
-    { title: 'Support', path: '/support', icon: help },
-    { title: 'Logout', path: '/logout', icon: logOut }
+    { title: "Account", path: "/account", icon: person },
+    { title: "Support", path: "/support", icon: help },
+    { title: "Logout", path: "/logout", icon: logOut }
   ],
   loggedOutPages: [
-    { title: 'Login', path: '/login', icon: logIn },
-    { title: 'Support', path: '/support', icon: help },
-    { title: 'Signup', path: '/signup', icon: personAdd }
+    { title: "Login", path: "/login", icon: logIn },
+    { title: "Support", path: "/support", icon: help },
+    { title: "Signup", path: "/signup", icon: personAdd }
   ]
 };
 
 interface Pages {
-  title: string,
-  path: string,
-  icon: { ios: string, md: string },
-  routerDirection?: string
+  title: string;
+  path: string;
+  icon: { ios: string; md: string };
+  routerDirection?: string;
 }
 interface StateProps {
   darkMode: boolean;
@@ -49,12 +60,17 @@ interface StateProps {
 }
 
 interface DispatchProps {
-  setDarkMode: typeof setDarkMode
+  setDarkMode: typeof setDarkMode;
 }
 
-interface MenuProps extends RouteComponentProps, StateProps, DispatchProps { }
+interface MenuProps extends RouteComponentProps, StateProps, DispatchProps {}
 
-const Menu: React.FC<MenuProps> = ({ darkMode, history, isAuthenticated, setDarkMode }) => {
+const Menu: React.FC<MenuProps> = ({
+  darkMode,
+  history,
+  isAuthenticated,
+  setDarkMode
+}) => {
   const [disableMenu, setDisableMenu] = useState(false);
 
   function renderlistItems(list: Pages[]) {
@@ -84,14 +100,18 @@ const Menu: React.FC<MenuProps> = ({ darkMode, history, isAuthenticated, setDark
         </IonList>
         <IonList>
           <IonListHeader>Account</IonListHeader>
-          {isAuthenticated ? renderlistItems(routes.loggedInPages) : renderlistItems(routes.loggedOutPages)}
+          {isAuthenticated
+            ? renderlistItems(routes.loggedInPages)
+            : renderlistItems(routes.loggedOutPages)}
         </IonList>
         <IonList>
           <IonListHeader>Tutorial</IonListHeader>
-          <IonItem onClick={() => {
-            setDisableMenu(true);
-            history.push('/tutorial');
-          }}>
+          <IonItem
+            onClick={() => {
+              setDisableMenu(true);
+              history.push("/tutorial");
+            }}
+          >
             <IonIcon slot="start" icon={hammer} />
             Show Tutorial
           </IonItem>
@@ -99,7 +119,10 @@ const Menu: React.FC<MenuProps> = ({ darkMode, history, isAuthenticated, setDark
         <IonList>
           <IonItem>
             <IonLabel>Dark Theme</IonLabel>
-            <IonToggle checked={darkMode} onClick={() => setDarkMode(!darkMode)} />
+            <IonToggle
+              checked={darkMode}
+              onClick={() => setDarkMode(!darkMode)}
+            />
           </IonItem>
         </IonList>
       </IonContent>
@@ -108,12 +131,20 @@ const Menu: React.FC<MenuProps> = ({ darkMode, history, isAuthenticated, setDark
 };
 
 export default connect<{}, StateProps, {}>({
-  mapStateToProps: (state) => ({
+  mapStateToProps: state => ({
     darkMode: state.user.darkMode,
     isAuthenticated: state.user.isLoggedin
   }),
-  mapDispatchToProps: ({
+  mapDispatchToProps: {
     setDarkMode
-  }),
+  },
   component: withRouter(Menu)
-})
+});
+
+/**
+ * Seguir con la parte de signup y login real de firebase,  la parte visual de darkmode y las cuentas solo
+ * se puede toquitear cuando realmente tenga dominado mas el codigo de html react tsx e ionic.
+ * 
+ * Por ahora buscamos funcionalidad.
+ * 
+ */
