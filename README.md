@@ -2,7 +2,8 @@
 
 ## Issues y TODOs
 
-1 - Añadir i18n
+1 - Añadir i18n ==> Check https://developer.mozilla.org/es/docs/Mozilla/Add-ons/WebExtensions/API/i18n
+
 2 - Modificar la carga de tutorial desde el menú o quitarla para que no desaparezca el menú lateral
 3 - Setear el modo oscuro por defecto y colocarlo en un botoncito tipo majoledesma, que cosa mas bonita ella.
 
