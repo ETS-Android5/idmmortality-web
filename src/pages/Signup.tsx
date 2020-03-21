@@ -17,7 +17,12 @@ import {
   IonText
 } from "@ionic/react";
 import "./css/Login.scss";
-import { setIsLoggedIn, setUsername, setPassword, setUseremail } from "../data/user/user.actions";
+import {
+  setIsLoggedIn,
+  setUsername,
+  setPassword,
+  setEmail
+} from "../data/user/user.actions";
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
 
@@ -27,7 +32,7 @@ interface DispatchProps {
   setIsLoggedIn: typeof setIsLoggedIn;
   setUsername: typeof setUsername;
   setPassword: typeof setPassword;
-  setUseremail: typeof setUseremail;
+  setEmail: typeof setEmail;
 }
 
 interface SignupProps extends OwnProps, DispatchProps {}
@@ -35,15 +40,17 @@ interface SignupProps extends OwnProps, DispatchProps {}
 const Signup: React.FC<SignupProps> = ({
   setIsLoggedIn,
   history,
-  setUsername: setUsernameAction
+  setUsername: setUsernameAction,
+  setEmail: setEmailAction,
+  setPassword: setPasswordAction
 }) => {
-  const [email, setUseremail] = useState("");
+  const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
-  const [emailError, setUseremailError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
 
   /* 
     visto lo visto esta funcion no nos vale para signup inicialmente, sino que si alguien hace signup con datos de login
@@ -58,15 +65,19 @@ const Signup: React.FC<SignupProps> = ({
     if (!password) {
       setPasswordError(true);
     }
+    if (!email) {
+      setEmailError(true);
+    }
 
-    if (username && password) {
+    if (username && password && email) {
       /*
        comprobar si username y password, son parte de firebase user-password
        ademas lo suyo es añadir un email, para poder gestionar el registro correcamente
       */
       await setIsLoggedIn(true); // no usariamos setIsLoggedIn, usariamos un setSignedUp
-      await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup 
-      
+      await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup
+      await setEmailAction(email);
+      await setPasswordAction(password);
       /**
        * Una vez hemos registradoy pedido la confirmación usaremos un ternario
        *  Quieres confirmar tu cuenta ? push gmail.com : push cuentadeinvitado.tab
@@ -92,19 +103,19 @@ const Signup: React.FC<SignupProps> = ({
 
         <form noValidate onSubmit={signup}>
           <IonList>
-          <IonItem>
+            <IonItem>
               <IonLabel position="stacked" color="primary">
                 Email
               </IonLabel>
               <IonInput
-                name="emaiil"
+                name="email"
                 type="email"
                 value={email}
                 spellCheck={false}
                 autocapitalize="off"
                 onIonChange={e => {
-                  setUseremail(e.detail.value!);
-                  setUseremailError(false);
+                  setEmail(e.detail.value!);
+                  setEmailError(false);
                 }}
                 required
               ></IonInput>
@@ -179,7 +190,7 @@ export default connect<OwnProps, {}, DispatchProps>({
     setIsLoggedIn,
     setUsername,
     setPassword,
-    setUseremail,
+    setEmail
   },
   component: Signup
 });

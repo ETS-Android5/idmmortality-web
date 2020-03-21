@@ -82,7 +82,7 @@ export const setUsernameData = async (username?: string) => {
   }
 };
 
-export const setUseremailData = async (email?: string) => {
+export const setEmailData = async (email?: string) => {
   if (!email) {
     await Storage.remove({ key: EMAIL });
   } else {
