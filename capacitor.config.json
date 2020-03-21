@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "ionic-react-conference-app",
+  "appId": "buckdevment.quantic.react",
+  "appName": "Quantic-React",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
