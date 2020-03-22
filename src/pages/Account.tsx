@@ -41,7 +41,9 @@ const Account: React.FC<AccountProps> = ({
   password
 }) => {
   // como showAlert es un hook que tira de booleanos , hacemos el check sencillo con clicked y alert
-  const [showAlert, setShowAlert] = useState(false);
+  const [showAlertUsername, setShowAlertUsername] = useState(false);
+  const [showAlertEmail, setShowAlertEmail] = useState(false);
+  const [showAlertPassword, setShowAlertPassword] = useState(false);
 
   const clicked = (text: string) => {
     console.log(`Clicked ${text}`);
@@ -69,11 +71,13 @@ const Account: React.FC<AccountProps> = ({
               <IonItem onClick={() => clicked("Update Picture")}>
                 Update Picture
               </IonItem>
-              <IonItem onClick={() => clicked(email)}>Change Email</IonItem>
-              <IonItem onClick={() => clicked(username)}>
+              <IonItem onClick={() => setShowAlertEmail(true)}>
+                Change Email
+              </IonItem>
+              <IonItem onClick={() => setShowAlertUsername(true)}>
                 Change Username
               </IonItem>
-              <IonItem onClick={() => clicked(password)}>
+              <IonItem onClick={() => setShowAlertPassword(true)}>
                 Change Password
               </IonItem>
               <IonItem routerLink="/support" routerDirection="none">
@@ -87,16 +91,14 @@ const Account: React.FC<AccountProps> = ({
         )}
       </IonContent>
       <IonAlert
-        isOpen={showAlert}
-        header="Change Field"
+        isOpen={showAlertUsername}
+        header="Change Username"
         buttons={[
           "Cancel",
           {
             text: "Ok",
-            handler: data => {
-              setUsername(data.username);
-              setEmail(data.email);
-              setPassword(data.password);
+            handler: () => {
+              setUsername(username);
             }
           }
         ]}
@@ -108,7 +110,51 @@ const Account: React.FC<AccountProps> = ({
             placeholder: "username"
           }
         ]}
-        onDidDismiss={() => setShowAlert(false)}
+        onDidDismiss={() => setShowAlertUsername(false)}
+      />
+      <IonAlert
+        isOpen={showAlertEmail}
+        header="Change Email"
+        buttons={[
+          "Cancel",
+          {
+            text: "Ok",
+            handler: () => {
+              setEmail(email);
+            }
+          }
+        ]}
+        inputs={[
+          {
+            type: "text",
+            name: "Email",
+            value: email,
+            placeholder: "Email"
+          }
+        ]}
+        onDidDismiss={() => setShowAlertEmail(false)}
+      />
+      <IonAlert
+        isOpen={showAlertPassword}
+        header="Change Field"
+        buttons={[
+          "Cancel",
+          {
+            text: "Ok",
+            handler: () => {
+              setPassword(password);
+            }
+          }
+        ]}
+        inputs={[
+          {
+            type: "text",
+            name: "password",
+            value: password,
+            placeholder: "password"
+          }
+        ]}
+        onDidDismiss={() => setShowAlertPassword(false)}
       />
     </IonPage>
   );

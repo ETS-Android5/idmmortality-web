@@ -49,10 +49,14 @@ export const getUserData = async () => {
   const isLoggedin = (await response[0].value) === "true";
   const hasSeenTutorial = (await response[1].value) === "true";
   const username = (await response[2].value) || undefined;
+  const email =  (await response[3].value) || undefined;
+  const password =  (await response[4].value) || undefined;
   const data = {
     isLoggedin,
     hasSeenTutorial,
-    username
+    username,
+    email,
+    password
   };
   return data;
 };

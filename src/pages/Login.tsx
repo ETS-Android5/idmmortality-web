@@ -4,6 +4,8 @@ import './css/Login.scss';
 import { setIsLoggedIn, setUsername } from '../data/user/user.actions';
 import { connect } from '../data/connect';
 import { RouteComponentProps } from 'react-router';
+
+import * as firebaseui from 'firebaseui'
 import {getAuth} from '../data/firebaseAuth';
 
 interface OwnProps extends RouteComponentProps {}
@@ -34,10 +36,10 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history, setUsername: setUs
       setPasswordError(true);
     }
 
-    if(username && password) {
+    if(username && password) {      
       await setIsLoggedIn(true);
       await setUsernameAction(username);
-      history.push('/profile', {direction: 'none'});
+      history.push('/account', {direction: 'none'});
     }
   };
 

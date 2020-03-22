@@ -25,6 +25,7 @@ import {
 } from "../data/user/user.actions";
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
+import * as firebase from "firebase/app";
 import { getAuth } from "../data/firebaseAuth";
 
 interface OwnProps extends RouteComponentProps {}
@@ -71,20 +72,35 @@ const Signup: React.FC<SignupProps> = ({
     }
 
     if (username && password && email) {
-      /*
-       comprobar si username y password, son parte de firebase user-password
-       ademas lo suyo es añadir un email, para poder gestionar el registro correcamente
-      */
+      // fixear los muestreos con localstorage
       await setIsLoggedIn(true); // no usariamos setIsLoggedIn, usariamos un setSignedUp
       await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup
       await setEmailAction(email);
       await setPasswordAction(password);
-      getAuth();
+      
+      getAuth(); // sino llamamos a la instancia no podemos usar auth... porque?? 
+      /*
+       comprobar si username y password, son parte de firebase user-password
+       ademas lo suyo es añadir un email, para poder gestionar el registro correcamente
+       -- Ok : tenemos registro con email y password
+       -- Todo: social signup test
+      */
       /**
        * Una vez hemos registradoy pedido la confirmación usaremos un ternario
        *  Quieres confirmar tu cuenta ? push gmail.com : push cuentadeinvitado.tab
        */
-      history.push("/profile", { direction: "none" });
+
+      firebase
+        .auth()
+        .createUserWithEmailAndPassword(email, password)
+        .catch(function(error) {
+          // Handle Errors here.
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          alert("Errores de code y mensaje : " + errorCode + errorMessage);
+        });
+
+      history.push("/account", { direction: "none" });
     }
   };
 
@@ -113,7 +129,7 @@ const Signup: React.FC<SignupProps> = ({
                 name="email"
                 type="email"
                 value={email}
-                spellCheck={false}
+                spellCheck={true}
                 autocapitalize="off"
                 onIonChange={e => {
                   setEmail(e.detail.value!);
