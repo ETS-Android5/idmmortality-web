@@ -25,6 +25,7 @@ import {
 } from "../data/user/user.actions";
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
+import { getAuth } from "../data/firebaseAuth";
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -78,11 +79,12 @@ const Signup: React.FC<SignupProps> = ({
       await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup
       await setEmailAction(email);
       await setPasswordAction(password);
+      getAuth();
       /**
        * Una vez hemos registradoy pedido la confirmación usaremos un ternario
        *  Quieres confirmar tu cuenta ? push gmail.com : push cuentadeinvitado.tab
        */
-      history.push("/tabs/schedule", { direction: "none" });
+      history.push("/profile", { direction: "none" });
     }
   };
 

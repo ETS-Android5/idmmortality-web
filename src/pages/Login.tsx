@@ -4,6 +4,7 @@ import './css/Login.scss';
 import { setIsLoggedIn, setUsername } from '../data/user/user.actions';
 import { connect } from '../data/connect';
 import { RouteComponentProps } from 'react-router';
+import {getAuth} from '../data/firebaseAuth';
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -25,6 +26,7 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history, setUsername: setUs
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormSubmitted(true);
+
     if(!username) {
       setUsernameError(true);
     }
@@ -35,7 +37,7 @@ const Login: React.FC<LoginProps> = ({setIsLoggedIn, history, setUsername: setUs
     if(username && password) {
       await setIsLoggedIn(true);
       await setUsernameAction(username);
-      history.push('/tabs/schedule', {direction: 'none'});
+      history.push('/profile', {direction: 'none'});
     }
   };
 
