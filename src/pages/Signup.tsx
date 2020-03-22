@@ -73,11 +73,7 @@ const Signup: React.FC<SignupProps> = ({
 
     if (username && password && email) {
       // fixear los muestreos con localstorage
-      await setIsLoggedIn(true); // no usariamos setIsLoggedIn, usariamos un setSignedUp
-      await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup
-      await setEmailAction(email);
-      await setPasswordAction(password);
-      
+    
       getAuth(); // sino llamamos a la instancia no podemos usar auth... porque?? 
       /*
        comprobar si username y password, son parte de firebase user-password
@@ -92,15 +88,19 @@ const Signup: React.FC<SignupProps> = ({
 
       firebase
         .auth()
-        .createUserWithEmailAndPassword(email, password)
+        .createUserWithEmailAndPassword(email, password).then(async () => {
+          await setIsLoggedIn(true); // no usariamos setIsLoggedIn, usariamos un setSignedUp
+          await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup
+          await setEmailAction(email);
+          await setPasswordAction(password);
+          history.push("/account", { direction: "none" });
+        })
         .catch(function(error) {
           // Handle Errors here.
           const errorCode = error.code;
           const errorMessage = error.message;
           alert("Errores de code y mensaje : " + errorCode + errorMessage);
         });
-
-      history.push("/account", { direction: "none" });
     }
   };
 
