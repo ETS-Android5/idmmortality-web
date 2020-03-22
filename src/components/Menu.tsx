@@ -91,32 +91,6 @@ const Menu: React.FC<MenuProps> = ({
       <IonHeader>
         <IonToolbar>
           <IonTitle>Menu</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-      <IonContent class="outer-content">
-        <IonList>
-          <IonListHeader>Navigate</IonListHeader>
-          {renderlistItems(routes.appPages)}
-        </IonList>
-        <IonList>
-          <IonListHeader>Account</IonListHeader>
-          {isAuthenticated
-            ? renderlistItems(routes.loggedInPages)
-            : renderlistItems(routes.loggedOutPages)}
-        </IonList>
-        <IonList>
-          <IonListHeader>Tutorial</IonListHeader>
-          <IonItem
-            onClick={() => {
-              setDisableMenu(true);
-              history.push("/tutorial");
-            }}
-          >
-            <IonIcon slot="start" icon={hammer} />
-            Show Tutorial
-          </IonItem>
-        </IonList>
-        <IonList>
           <IonItem>
             <IonLabel>Dark Theme</IonLabel>
             <IonToggle
@@ -124,6 +98,26 @@ const Menu: React.FC<MenuProps> = ({
               onClick={() => setDarkMode(!darkMode)}
             />
           </IonItem>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent class="outer-content">
+      <IonList>
+          <IonListHeader>What is Quantic</IonListHeader>
+          <IonItem
+            onClick={() => {
+              setDisableMenu(false);
+              history.push("/tutorial");
+            }}
+          >
+            <IonIcon slot="start" icon={hammer} />
+            Quantic Tutorial
+          </IonItem>
+        </IonList>
+        <IonList>
+          <IonListHeader>Account</IonListHeader>
+          {isAuthenticated
+            ? renderlistItems(routes.loggedInPages)
+            : renderlistItems(routes.loggedOutPages)}
         </IonList>
       </IonContent>
     </IonMenu>
@@ -146,5 +140,40 @@ export default connect<{}, StateProps, {}>({
  * se puede toquitear cuando realmente tenga dominado mas el codigo de html react tsx e ionic.
  * 
  * Por ahora buscamos funcionalidad.
+ * 
+ * No tutorial shit
+ *  <IonList>
+          <IonListHeader>Tutorial</IonListHeader>
+          <IonItem
+            onClick={() => {
+              setDisableMenu(false);
+              history.push("/tutorial");
+            }}
+          >
+            <IonIcon slot="start" icon={hammer} />
+            Show Tutorial
+          </IonItem>
+        </IonList>
+ * 
+ * DARRK MODE ON HEADER
+ * <IonList>
+          <IonItem>
+            <IonLabel>Dark Theme</IonLabel>
+            <IonToggle
+              checked={darkMode}
+              onClick={() => setDarkMode(!darkMode)}
+            />
+          </IonItem>
+        </IonList>
+ * 
+ * PAGES when firebase templates and apps were available
+ *  <IonList>
+          <IonListHeader>Navigate</IonListHeader>
+          {renderlistItems(routes.appPages)}
+        </IonList>
+ * 
+ * 
+ * 
+ * 
  * 
  */

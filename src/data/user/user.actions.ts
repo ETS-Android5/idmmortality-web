@@ -1,6 +1,7 @@
 import {
   getUserData,
   setIsLoggedInData,
+  setIsLoggedOutData,
   setUsernameData,
   setEmailData,
   setPasswordData,
@@ -30,6 +31,7 @@ export const setData = (data: Partial<UserState>) =>
 
 export const logoutUser = () => async (dispatch: React.Dispatch<any>) => {
   await setIsLoggedInData(false);
+  await setIsLoggedOutData(true);
   dispatch(setUsername());
 };
 
@@ -40,6 +42,16 @@ export const setIsLoggedIn = (loggedIn: boolean) => async (
   return {
     type: "set-is-loggedin",
     loggedIn
+  } as const;
+};
+
+export const setIsLoggedOut = (loggedOut: boolean) => async (
+  dispatch: React.Dispatch<any>
+) => {
+  await setIsLoggedOutData(loggedOut);
+  return {
+    type: "set-is-loggedout",
+    loggedOut
   } as const;
 };
 
@@ -93,6 +105,7 @@ export type UserActions =
   | ActionType<typeof setLoading>
   | ActionType<typeof setData>
   | ActionType<typeof setIsLoggedIn>
+  | ActionType<typeof setIsLoggedOut>
   | ActionType<typeof setPassword>
   | ActionType<typeof setEmail>
   | ActionType<typeof setUsername>

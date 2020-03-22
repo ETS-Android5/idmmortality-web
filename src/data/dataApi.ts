@@ -10,6 +10,7 @@ const sessionsUrl = "/assets/data/sessions.json";
 const speakersUrl = "/assets/data/speakers.json";
 
 const HAS_LOGGED_IN = "hasLoggedIn";
+const HAS_LOGGED_OUT = "hasLoggedOut";
 const HAS_SEEN_TUTORIAL = "hasSeenTutorial";
 const USERNAME = "username";
 const PASSWORD = "password";
@@ -44,13 +45,14 @@ export const getUserData = async () => {
     Storage.get({ key: HAS_SEEN_TUTORIAL }),
     Storage.get({ key: USERNAME }),
     Storage.get({ key: EMAIL }),
-    Storage.get({ key: PASSWORD })
+    Storage.get({ key: PASSWORD }),
+    Storage.get({ key: HAS_LOGGED_OUT })
   ]);
   const isLoggedin = (await response[0].value) === "true";
   const hasSeenTutorial = (await response[1].value) === "true";
   const username = (await response[2].value) || undefined;
-  const email =  (await response[3].value) || undefined;
-  const password =  (await response[4].value) || undefined;
+  const email = (await response[3].value) || undefined;
+  const password = (await response[4].value) || undefined;
   const data = {
     isLoggedin,
     hasSeenTutorial,
@@ -63,6 +65,13 @@ export const getUserData = async () => {
 
 export const setIsLoggedInData = async (isLoggedIn: boolean) => {
   await Storage.set({ key: HAS_LOGGED_IN, value: JSON.stringify(isLoggedIn) });
+};
+
+export const setIsLoggedOutData = async (isLoggedOut: boolean) => {
+  await Storage.set({
+    key: HAS_LOGGED_OUT,
+    value: JSON.stringify(isLoggedOut)
+  });
 };
 
 export const setHasSeenTutorialData = async (hasSeenTutorial: boolean) => {
