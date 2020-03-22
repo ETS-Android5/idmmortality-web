@@ -26,7 +26,7 @@ import {
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
 import * as firebase from "firebase/app";
-import { getAuth } from "../data/firebaseAuth";
+// import { getAuth } from "../data/firebaseAuth";
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -73,8 +73,8 @@ const Signup: React.FC<SignupProps> = ({
 
     if (username && password && email) {
       // fixear los muestreos con localstorage
-    
-      getAuth(); // sino llamamos a la instancia no podemos usar auth... porque?? 
+
+      // getAuth(); // sino llamamos a la instancia no podemos usar auth... porque??
       /*
        comprobar si username y password, son parte de firebase user-password
        ademas lo suyo es añadir un email, para poder gestionar el registro correcamente
@@ -88,7 +88,8 @@ const Signup: React.FC<SignupProps> = ({
 
       firebase
         .auth()
-        .createUserWithEmailAndPassword(email, password).then(async () => {
+        .createUserWithEmailAndPassword(email, password)
+        .then(async () => {
           await setIsLoggedIn(true); // no usariamos setIsLoggedIn, usariamos un setSignedUp
           await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup
           await setEmailAction(email);

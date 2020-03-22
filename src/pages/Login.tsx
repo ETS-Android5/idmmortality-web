@@ -14,8 +14,15 @@ import {
   IonItem,
   IonLabel,
   IonInput,
-  IonText
+  IonText,
+  IonLoading,
+  IonFab,
+  IonFabButton,
+  IonIcon,
+  IonFabList,
+  IonGrid
 } from "@ionic/react";
+import { logoGoogleplus, logoTwitter, logoFacebook } from "ionicons/icons";
 import "./css/Login.scss";
 import {
   setIsLoggedIn,
@@ -25,7 +32,7 @@ import {
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
 import * as firebase from "firebase/app";
-import { getAuth } from "../data/firebaseAuth";
+import { GoogleLoginAuth, EmailPasswordLoginAuth } from "../data/firebaseAuth";
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -48,6 +55,32 @@ const Login: React.FC<LoginProps> = ({
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState("");
+  const [showLoading, setShowLoading] = useState(false);
+
+  const openSocial = (network: string) => {
+    switch (network) {
+      case "Facebook":
+        setLoadingMessage(`Logging with ${network}`);
+        setShowLoading(true);
+        break;
+      case "Google+":
+        GoogleLoginAuth();
+        /*.then(() => {
+          setLoadingMessage(`Logging with ${network}`);
+          setShowLoading(true);
+        });
+         */
+        
+        break;
+      case "Twitter":
+        setLoadingMessage(`Logging with ${network}`);
+        setShowLoading(true);
+        break;
+      default:
+        break;
+    }
+  };
 
   const login = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -61,22 +94,16 @@ const Login: React.FC<LoginProps> = ({
     }
 
     if (username && password) {
-      getAuth();
-
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(username, password)
+      EmailPasswordLoginAuth(username, password)
         .then(async () => {
           await setIsLoggedIn(true);
-          await setUsernameAction(username);
-          await setPasswordAction(password);
+          //await setUsernameAction(username); we dont need this anymore, does we?
+          //await setPasswordAction(password);
           history.push("/account", { direction: "none" });
         })
-        .catch(function(error) {
-          // Handle Errors here.
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          alert("Errores de code y mensaje : " + errorCode + errorMessage);
+        .catch(error => {
+          alert("Usuario y/o contraseña incorrectos");
+          return;
         });
     }
   };
@@ -138,19 +165,55 @@ const Login: React.FC<LoginProps> = ({
             )}
           </IonList>
 
-          <IonRow>
-            <IonCol>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size="5%">
               <IonButton type="submit" expand="block">
                 Login
               </IonButton>
             </IonCol>
-            <IonCol>
+            <IonCol size="5%">
               <IonButton routerLink="/signup" color="light" expand="block">
                 Signup
               </IonButton>
             </IonCol>
           </IonRow>
         </form>
+
+        <IonLoading
+          isOpen={showLoading}
+          message={loadingMessage}
+          duration={2000}
+          spinner="crescent"
+          onDidDismiss={() => setShowLoading(false)}
+        />
+        <IonGrid>
+          <IonRow class="ion-justify-content-center">
+            <IonCol size="auto">
+              <IonFabButton
+                color="google"
+                onClick={() => openSocial("Google+")}
+              >
+                <IonIcon icon={logoGoogleplus} />
+              </IonFabButton>
+            </IonCol>
+            <IonCol size="auto">
+              <IonFabButton
+                color="twitter"
+                onClick={() => openSocial("Twitter")}
+              >
+                <IonIcon icon={logoTwitter} />
+              </IonFabButton>
+            </IonCol>
+            <IonCol size="auto">
+              <IonFabButton
+                color="facebook"
+                onClick={() => openSocial("Facebook")}
+              >
+                <IonIcon icon={logoFacebook} />
+              </IonFabButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );

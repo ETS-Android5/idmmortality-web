@@ -3,7 +3,7 @@ import { Session } from "../models/Session";
 import { Speaker } from "../models/Speaker";
 import { Location } from "../models/Location";
 import * as firebase from "firebase/app";
-import { getAuth } from "../data/firebaseAuth";
+// import { getAuth } from "../data/firebaseAuth";
 
 const { Storage } = Plugins;
 
