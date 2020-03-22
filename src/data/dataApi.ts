@@ -2,6 +2,8 @@ import { Plugins } from "@capacitor/core";
 import { Session } from "../models/Session";
 import { Speaker } from "../models/Speaker";
 import { Location } from "../models/Location";
+import * as firebase from "firebase/app";
+import { getAuth } from "../data/firebaseAuth";
 
 const { Storage } = Plugins;
 
@@ -68,10 +70,23 @@ export const setIsLoggedInData = async (isLoggedIn: boolean) => {
 };
 
 export const setIsLoggedOutData = async (isLoggedOut: boolean) => {
-  await Storage.set({
-    key: HAS_LOGGED_OUT,
-    value: JSON.stringify(isLoggedOut)
-  });
+  firebase
+    .auth()
+    .signOut()
+    .then(async function() {
+      console.log("Cerrada sesion Firebase");
+
+      await Storage.set({
+        key: HAS_LOGGED_OUT,
+        value: JSON.stringify(isLoggedOut)
+      });
+    })
+    .catch(function(error) {
+      // An error happened.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      alert("Errores de code y mensaje : " + errorCode + errorMessage);
+    });
 };
 
 export const setHasSeenTutorialData = async (hasSeenTutorial: boolean) => {
