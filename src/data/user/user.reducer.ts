@@ -21,5 +21,7 @@ export function userReducer(state: UserState, action: UserActions): UserState {
       return { ...state, email: action.email };
     case "set-password":
       return { ...state, password: action.password };
+    case "set-picture":
+      return { ...state, picture: action.picture };
   }
 }

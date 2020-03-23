@@ -1,6 +1,13 @@
 import "firebase/auth";
 import * as firebase from "firebase/app";
 
+import {
+  setIsLoggedIn,
+  setUsername,
+  setPassword,
+  setEmail
+} from "../data/user/user.actions";
+
 export const EmailPasswordLoginAuth = async (
   email: string,
   password: string
@@ -20,36 +27,17 @@ export const GoogleLoginAuth = async () => {
   /*
    */
   // Start a sign in process for an unauthenticated user.
-  let provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("profile");
-  provider.addScope("email");
-  firebase.auth().signInWithRedirect(provider);
-
-  firebase
-    .auth()
-    .getRedirectResult()
-    .then(function(result) {
-      if (result.credential) {
-        // This gives you a Google Access Token.
-        let token = result.credential;
-      }
-      let user = result.user;
-      alert("Hello " + user);
-    });
-
-  /*
-  let provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope("profile");
-  provider.addScope("email");
-  firebase
-    .auth()
-    .signInWithPopup(provider)
-    .then(result => {
-      // This gives you a Google Access Token.
-      // let token = result.credential.accessToken;
-      // The signed-in user info.
-      let user = result.user;
-
-      alert("Hello " + user);
-    });*/
+  const provider = new firebase.auth.GoogleAuthProvider();
+  // provider.addScope("profile");
+  // provider.addScope("email");
+  return firebase.auth().signInWithPopup(provider);
+   
 };
+
+export const logOutAuth = async () => {
+  firebase.auth().signOut().then(function() {
+    
+  }).catch(function(error) {
+    // An error happened.
+  });
+}

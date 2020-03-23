@@ -27,11 +27,12 @@ import "./css/Login.scss";
 import {
   setIsLoggedIn,
   setUsername,
-  setPassword
+  setPassword,
+  setEmail,
+  setPicture
 } from "../data/user/user.actions";
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
-import * as firebase from "firebase/app";
 import { GoogleLoginAuth, EmailPasswordLoginAuth } from "../data/firebaseAuth";
 
 interface OwnProps extends RouteComponentProps {}
@@ -40,6 +41,8 @@ interface DispatchProps {
   setIsLoggedIn: typeof setIsLoggedIn;
   setUsername: typeof setUsername;
   setPassword: typeof setPassword;
+  setEmail: typeof setEmail;
+  setPicture: typeof setPicture;
 }
 
 interface LoginProps extends OwnProps, DispatchProps {}
@@ -48,7 +51,9 @@ const Login: React.FC<LoginProps> = ({
   setIsLoggedIn,
   history,
   setUsername: setUsernameAction,
-  setPassword: setPasswordAction
+  setPassword: setPasswordAction,
+  setEmail: setEmailAction,
+  setPicture: setPictureAction
 }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -63,15 +68,25 @@ const Login: React.FC<LoginProps> = ({
       case "Facebook":
         setLoadingMessage(`Logging with ${network}`);
         setShowLoading(true);
+
         break;
       case "Google+":
-        GoogleLoginAuth();
-        /*.then(() => {
-          setLoadingMessage(`Logging with ${network}`);
-          setShowLoading(true);
-        });
-         */
-        
+        setLoadingMessage(`Logging with ${network}, choose your account`);
+        setShowLoading(true);
+        GoogleLoginAuth()
+          .then(async result => {
+            if (result.user) {
+              await setIsLoggedIn(true);
+              await setUsernameAction(String(result.user.displayName));
+              await setPasswordAction("password");
+              await setEmailAction(String(result.user.email));
+              await setPictureAction(String(result.user.photoURL));
+              history.push("/account", { direction: "none" });
+            }
+          })
+          .catch(error => {
+            console.log("Login Error - retry again please");
+          });
         break;
       case "Twitter":
         setLoadingMessage(`Logging with ${network}`);
@@ -97,8 +112,9 @@ const Login: React.FC<LoginProps> = ({
       EmailPasswordLoginAuth(username, password)
         .then(async () => {
           await setIsLoggedIn(true);
-          //await setUsernameAction(username); we dont need this anymore, does we?
-          //await setPasswordAction(password);
+          await setUsernameAction(username); // we dont need this anymore, does we?
+          await setPasswordAction(password);
+
           history.push("/account", { direction: "none" });
         })
         .catch(error => {
@@ -223,7 +239,9 @@ export default connect<OwnProps, {}, DispatchProps>({
   mapDispatchToProps: {
     setIsLoggedIn,
     setUsername,
-    setPassword
+    setPassword,
+    setEmail,
+    setPicture
   },
   component: Login
 });

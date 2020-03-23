@@ -12,7 +12,13 @@ import {
   IonAlert
 } from "@ionic/react";
 import "./css/Account.scss";
-import { setUsername, setEmail, setPassword } from "../data/user/user.actions";
+import {
+  setUsername,
+  setEmail,
+  setPassword,
+  setPicture,
+  logoutUser
+} from "../data/user/user.actions";
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
 
@@ -22,12 +28,14 @@ interface StateProps {
   username?: string;
   email?: string;
   password?: string;
+  picture?: string;
 }
 
 interface DispatchProps {
   setUsername: typeof setUsername;
   setPassword: typeof setPassword;
   setEmail: typeof setEmail;
+  setPicture: typeof setPicture;
 }
 
 interface AccountProps extends OwnProps, StateProps, DispatchProps {}
@@ -36,9 +44,11 @@ const Account: React.FC<AccountProps> = ({
   setUsername,
   setEmail,
   setPassword,
+  setPicture,
   username,
   email,
-  password
+  password,
+  picture
 }) => {
   // como showAlert es un hook que tira de booleanos , hacemos el check sencillo con clicked y alert
   const [showAlertUsername, setShowAlertUsername] = useState(false);
@@ -62,15 +72,10 @@ const Account: React.FC<AccountProps> = ({
       <IonContent>
         {username && email && password && (
           <div className="ion-padding-top ion-text-center">
-            <img
-              src="https://www.gravatar.com/avatar?d=mm&s=140"
-              alt="avatar"
-            />
+            <img src={picture || "assets/img/appicon.svg"} alt="avatar" />
             <h2>{username}</h2>
             <IonList inset>
-              <IonItem onClick={() => clicked("Update Picture")}>
-                Update Picture
-              </IonItem>
+              <IonItem onClick={() => alert(picture)}>Update Picture</IonItem>
               <IonItem onClick={() => setShowAlertEmail(true)}>
                 Change Email
               </IonItem>
@@ -83,7 +88,11 @@ const Account: React.FC<AccountProps> = ({
               <IonItem routerLink="/support" routerDirection="none">
                 Support
               </IonItem>
-              <IonItem routerLink="/logout" routerDirection="none">
+              <IonItem
+                routerLink="/logout"
+                routerDirection="none"
+                onClick={logoutUser()}
+              >
                 Logout
               </IonItem>
             </IonList>
@@ -164,12 +173,14 @@ export default connect<OwnProps, StateProps, DispatchProps>({
   mapStateToProps: state => ({
     username: state.user.username,
     email: state.user.email,
-    password: state.user.password
+    password: state.user.password,
+    picture: state.user.picture
   }),
   mapDispatchToProps: {
     setUsername,
     setPassword,
-    setEmail
+    setEmail,
+    setPicture
   },
   component: Account
 });

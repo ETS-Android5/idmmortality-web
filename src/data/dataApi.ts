@@ -17,6 +17,7 @@ const HAS_SEEN_TUTORIAL = "hasSeenTutorial";
 const USERNAME = "username";
 const PASSWORD = "password";
 const EMAIL = "email";
+const PICTURE = "picture";
 
 export const getConfData = async () => {
   const response = await Promise.all([
@@ -48,19 +49,22 @@ export const getUserData = async () => {
     Storage.get({ key: USERNAME }),
     Storage.get({ key: EMAIL }),
     Storage.get({ key: PASSWORD }),
-    Storage.get({ key: HAS_LOGGED_OUT })
+    Storage.get({ key: HAS_LOGGED_OUT }),
+    Storage.get({ key: PICTURE })
   ]);
   const isLoggedin = (await response[0].value) === "true";
   const hasSeenTutorial = (await response[1].value) === "true";
-  const username = (await response[2].value) || undefined;
-  const email = (await response[3].value) || undefined;
-  const password = (await response[4].value) || undefined;
+  const username = (await response[2].value) || "Guest";
+  const email = (await response[3].value) || "guest@mail.dom";
+  const password = (await response[4].value) || "quantic";
+  const picture = (await response[5].value) || "";
   const data = {
     isLoggedin,
     hasSeenTutorial,
     username,
     email,
-    password
+    password,
+    picture
   };
   return data;
 };
@@ -123,5 +127,13 @@ export const setPasswordData = async (password?: string) => {
     await Storage.remove({ key: PASSWORD });
   } else {
     await Storage.set({ key: PASSWORD, value: password });
+  }
+};
+
+export const setPictureData = async (picture?: string) => {
+  if (!picture) {
+    await Storage.remove({ key: PICTURE });
+  } else {
+    await Storage.set({ key: PICTURE, value: picture });
   }
 };

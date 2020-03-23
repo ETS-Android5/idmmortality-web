@@ -5,10 +5,12 @@ import {
   setUsernameData,
   setEmailData,
   setPasswordData,
-  setHasSeenTutorialData
+  setHasSeenTutorialData,
+  setPictureData
 } from "../dataApi";
 import { ActionType } from "../../util/types";
 import { UserState } from "./user.state";
+import { logOutAuth } from "../firebaseAuth";
 
 export const loadUserData = () => async (dispatch: React.Dispatch<any>) => {
   dispatch(setLoading(true));
@@ -29,10 +31,10 @@ export const setData = (data: Partial<UserState>) =>
     data
   } as const);
 
-export const logoutUser = () => async (dispatch: React.Dispatch<any>) => {
+export const logoutUser = () => async () => {
   await setIsLoggedInData(false);
   await setIsLoggedOutData(true);
-  dispatch(setUsername());
+  logOutAuth();
 };
 
 export const setIsLoggedIn = (loggedIn: boolean) => async (
@@ -52,6 +54,15 @@ export const setIsLoggedOut = (loggedOut: boolean) => async (
   return {
     type: "set-is-loggedout",
     loggedOut
+  } as const;
+};
+export const setPicture = (picture?: string) => async (
+  dispatch: React.Dispatch<any>
+) => {
+  await setPictureData(picture);
+  return {
+    type: "set-picture",
+    picture
   } as const;
 };
 
@@ -109,5 +120,6 @@ export type UserActions =
   | ActionType<typeof setPassword>
   | ActionType<typeof setEmail>
   | ActionType<typeof setUsername>
+  | ActionType<typeof setPicture>
   | ActionType<typeof setHasSeenTutorial>
   | ActionType<typeof setDarkMode>;
