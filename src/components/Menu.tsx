@@ -22,7 +22,11 @@ import {
   logOut,
   map,
   person,
-  personAdd
+  personAdd,
+  logoGameControllerA,
+  compass,
+  globe,
+  information
 } from "ionicons/icons";
 import React, { useState } from "react";
 import { connect } from "../data/connect";
@@ -45,6 +49,16 @@ const routes = {
     { title: "Login", path: "/login", icon: logIn },
     { title: "Support", path: "/support", icon: help },
     { title: "Signup", path: "/signup", icon: personAdd }
+  ],
+  loggedInProjectPages: [
+    { title: "My Community Projects", path: "/account", icon: compass },
+    { title: "Games", path: "/account", icon: help },
+    { title: "Templates", path: "/account", icon: map }
+  ],
+  loggedOutProjectPages: [
+    { title: "Community Projects", path: "/login", icon: globe },
+    { title: "Quantic Games", path: "/login", icon: help },
+    { title: "Information", path: "/login", icon: information }
   ]
 };
 
@@ -101,7 +115,7 @@ const Menu: React.FC<MenuProps> = ({
         </IonToolbar>
       </IonHeader>
       <IonContent class="outer-content">
-      <IonList>
+        <IonList>
           <IonListHeader>What is Quantic</IonListHeader>
           <IonItem
             onClick={() => {
@@ -112,6 +126,12 @@ const Menu: React.FC<MenuProps> = ({
             <IonIcon slot="start" icon={hammer} />
             Quantic Tutorial
           </IonItem>
+        </IonList>
+        <IonList>
+          <IonListHeader>Projects</IonListHeader>
+          {isAuthenticated
+            ? renderlistItems(routes.loggedInProjectPages)
+            : renderlistItems(routes.loggedOutProjectPages)}
         </IonList>
         <IonList>
           <IonListHeader>Account</IonListHeader>
