@@ -13,17 +13,13 @@ import {
   IonToggle
 } from "@ionic/react";
 import {
-  calendar,
-  contacts,
   hammer,
   help,
-  informationCircle,
   logIn,
   logOut,
   map,
   person,
   personAdd,
-  logoGameControllerA,
   compass,
   globe,
   information
@@ -104,14 +100,7 @@ const Menu: React.FC<MenuProps> = ({
     <IonMenu type="overlay" disabled={disableMenu} contentId="main">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Menu</IonTitle>
-          <IonItem>
-            <IonLabel>Dark Theme</IonLabel>
-            <IonToggle
-              checked={darkMode}
-              onClick={() => setDarkMode(!darkMode)}
-            />
-          </IonItem>
+          <IonTitle>Quantic</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent class="outer-content">
@@ -125,6 +114,12 @@ const Menu: React.FC<MenuProps> = ({
           >
             <IonIcon slot="start" icon={hammer} />
             Quantic Tutorial
+          </IonItem>
+          <IonItem
+            onClick={() => {history.push("/quanticgame");}}
+          >
+            <IonIcon slot="start" icon={globe} />
+            Quantic-Game
           </IonItem>
         </IonList>
         <IonList>
@@ -154,6 +149,16 @@ export default connect<{}, StateProps, {}>({
   },
   component: withRouter(Menu)
 });
+
+/**
+ *  <IonItem>
+            <IonLabel>Dark Theme</IonLabel>
+            <IonToggle
+              checked={darkMode}
+              onClick={() => setDarkMode(!darkMode)}
+            />
+          </IonItem>
+ */
 
 /**
  * Seguir con la parte de signup y login real de firebase,  la parte visual de darkmode y las cuentas solo

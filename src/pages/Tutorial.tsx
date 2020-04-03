@@ -66,9 +66,10 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
               Welcome to <b>QUANTIC</b>
             </h2>
             <p>
-              The <b>ionic conference app</b> is a practical preview of the
-              ionic framework in action, and a demonstration of proper code use.
+              The <b>Quantic</b> app is a practical preview of the
+              best augmented reality tool in action, and a repository of proper projects and templates.
             </p>
+    
           </IonSlide>
 
           <IonSlide>
@@ -79,9 +80,10 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
             />
             <h2 className="slide-title">What is QUANTIC?</h2>
             <p>
-              <b>Ionic Framework</b> is an open source SDK that enables
+              <b>Quantic</b> is an open source SDK that enables
               developers to build high quality mobile apps with web technologies
-              like HTML, CSS, and JavaScript.
+              like HTML, CSS, and JavaScript embeding a whole <b>UNITY</b> scene in a 
+              augmented reality experience using <b>ARJS</b>.
             </p>
           </IonSlide>
 
@@ -91,13 +93,29 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
               alt=""
               className="slide-image"
             />
-            <h2 className="slide-title">What is Quantic Projects?</h2>
+            <h2 className="slide-title">What is QUANTIC Projects?</h2>
             <p>
-              <b>Ionic Appflow</b> is a powerful set of services and features
-              built on top of Ionic Framework that brings a totally new level of
-              app development agility to mobile dev teams.
+              <b>Quantic Projects</b> is a set of worlds and games
+              availables in QUANTIC that brings a totally new level of
+              environment development to web mobile, specially for dev teams which wants to integrate augmented reality
+              in the browser.
             </p>
           </IonSlide>
+
+          <IonSlide>
+            <img
+              src="assets/img/ica-slidebox-img-3.png"
+              alt=""
+              className="slide-image"
+            />
+            <h2 className="slide-title">What is QUANTIC Templates?</h2>
+            <p>
+              <b>Quantic Templates</b> is a powerful set of exporting wrappers and features
+             availables in QUANTIC for the projects, for include wasm boosters, offline PWA experience,
+             tensorflow integration and awesome extras for web mobile pwa games that are focus on WebXR.
+            </p>
+          </IonSlide>
+
 
           <IonSlide>
             <img
@@ -105,13 +123,18 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
               alt=""
               className="slide-image"
             />
-            <h2 className="slide-title">Ready to Play?</h2>
+            <h2 className="slide-title">Ready to create new worlds to Play?</h2>
             <IonButton fill="clear" onClick={startApp}>
               Continue
               <IonIcon slot="end" icon={arrowForward} />
             </IonButton>
           </IonSlide>
         </IonSlides>
+        <p><a href="https://twitter.com/arjs">#MadeWithARJS</a></p>
+        <p><a href="https://unity.com">#MadeWithUNITY</a></p>
+        <p><a href="https://ionicframework.com">#MadeWithIONIC</a></p>
+        <hr/>
+        <p><a href="https://buckdevment.wordpress.com">#MadeByBuckDevMent</a> </p>
       </IonContent>
     </IonPage>
   );
