@@ -17,7 +17,7 @@ import {
   IonSelect,
   IonPopover
 } from "@ionic/react";
-import "./css/ExperimentDetails.scss";
+import "./css/ExperimentDetail.scss";
 import { calendar, pin, more } from "ionicons/icons";
 
 

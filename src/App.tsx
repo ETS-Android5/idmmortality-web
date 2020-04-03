@@ -40,6 +40,7 @@ import Tutorial from "./pages/Tutorial";
 import HomeOrTutorial from "./components/HomeOrTutorial";
 import { Session } from "./models/Session";
 import * as firebase from "firebase/app";
+import QuanticGame from "./pages/QuanticGame";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD6NGOyMliRPDOt6t-38vzjzUko-yJk5G8",
@@ -96,7 +97,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/tabs" component={MainTabs} />
+            <Route path="/quanticgame" component={QuanticGame} />
             <Route path="/account" component={Account} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />

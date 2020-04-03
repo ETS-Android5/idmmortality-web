@@ -31,7 +31,8 @@ import { setDarkMode } from "../data/user/user.actions";
 
 const routes = {
   appPages: [
-    /* { title: 'Schedule', path: '/tabs/schedule', icon: calendar },
+    { title: "Quantic-Game", path: "/quanticgame", icon: globe }
+    /* 
     { title: 'Speakers', path: '/tabs/speakers', icon: contacts },
     { title: 'Map', path: '/tabs/map', icon: map },
     { title: 'About', path: '/tabs/about', icon: informationCircle }*/
@@ -116,7 +117,9 @@ const Menu: React.FC<MenuProps> = ({
             Quantic Tutorial
           </IonItem>
           <IonItem
-            onClick={() => {history.push("/quanticgame");}}
+            onClick={() => {
+              history.push("/quanticgame");
+            }}
           >
             <IonIcon slot="start" icon={globe} />
             Quantic-Game
