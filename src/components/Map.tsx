@@ -1,12 +1,13 @@
-import React, { useRef, useEffect } from 'react';
-import { Location } from '../models/Location';
+import React, { useRef, useEffect } from "react";
+import { Location } from "../models/Location";
 
 interface MapProps {
-  locations: Location[]
-  mapCenter: Location
+  locations: Location[];
+  mapCenter: Location;
 }
 
 const Map: React.FC<MapProps> = ({ mapCenter, locations }) => {
+  /*
   const mapEle = useRef<HTMLDivElement>(null);
   const map = useRef<google.maps.Map>();
 
@@ -48,9 +49,9 @@ const Map: React.FC<MapProps> = ({ mapCenter, locations }) => {
 
   }, [mapCenter, locations]);
 
-  return (
-    <div ref={mapEle} className="map-canvas"></div>
-  );
-}
+  <div ref={mapEle} className="map-canvas"></div>
+  */
+  return <div className="map-canvas"></div>;
+};
 
 export default Map;

@@ -8,7 +8,7 @@ import {
   IonButton,
   IonSlides,
   IonSlide,
-  IonIcon
+  IonIcon,
 } from "@ionic/react";
 import { arrowForward } from "ionicons/icons";
 import { setHasSeenTutorial } from "../data/user/user.actions";
@@ -30,11 +30,11 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
 
   const startApp = async () => {
     await setHasSeenTutorial(true);
-    history.push("/account", { direction: "none" });
+    history.push("/quanticgame");
   };
 
   const handleSlideChangeStart = () => {
-    slideRef.current!.isEnd().then(isEnd => setShowSkip(!isEnd));
+    slideRef.current!.isEnd().then((isEnd) => setShowSkip(!isEnd));
   };
 
   return (
@@ -66,10 +66,10 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
               Welcome to <b>QUANTIC</b>
             </h2>
             <p>
-              The <b>Quantic</b> app is a practical preview of the
-              best augmented reality tool in action, and a repository of proper projects and templates.
+              The <b>Quantic</b> app is a practical preview of the best
+              augmented reality tool in action, and a repository of proper
+              projects and templates.
             </p>
-    
           </IonSlide>
 
           <IonSlide>
@@ -80,9 +80,9 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
             />
             <h2 className="slide-title">What is QUANTIC?</h2>
             <p>
-              <b>Quantic</b> is an open source SDK that enables
-              developers to build high quality mobile apps with web technologies
-              like HTML, CSS, and JavaScript embeding a whole <b>UNITY</b> scene in a 
+              <b>Quantic</b> is an open source SDK that enables developers to
+              build high quality mobile apps with web technologies like HTML,
+              CSS, and JavaScript embeding a whole <b>UNITY</b> scene in a
               augmented reality experience using <b>ARJS</b>.
             </p>
           </IonSlide>
@@ -95,10 +95,10 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
             />
             <h2 className="slide-title">What is QUANTIC Projects?</h2>
             <p>
-              <b>Quantic Projects</b> is a set of worlds and games
-              availables in QUANTIC that brings a totally new level of
-              environment development to web mobile, specially for dev teams which wants to integrate augmented reality
-              in the browser.
+              <b>Quantic Projects</b> is a set of worlds and games availables in
+              QUANTIC that brings a totally new level of environment development
+              to web mobile, specially for dev teams which wants to integrate
+              augmented reality in the browser.
             </p>
           </IonSlide>
 
@@ -110,12 +110,12 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
             />
             <h2 className="slide-title">What is QUANTIC Templates?</h2>
             <p>
-              <b>Quantic Templates</b> is a powerful set of exporting wrappers and features
-             availables in QUANTIC for the projects, for include wasm boosters, offline PWA experience,
-             tensorflow integration and awesome extras for web mobile pwa games that are focus on WebXR.
+              <b>Quantic Templates</b> is a powerful set of exporting wrappers
+              and features availables in QUANTIC for the projects, for include
+              wasm boosters, offline PWA experience, tensorflow integration and
+              awesome extras for web mobile pwa games that are focus on WebXR.
             </p>
           </IonSlide>
-
 
           <IonSlide>
             <img
@@ -130,11 +130,19 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
             </IonButton>
           </IonSlide>
         </IonSlides>
-        <p><a href="https://twitter.com/arjs">#MadeWithARJS</a></p>
-        <p><a href="https://unity.com">#MadeWithUNITY</a></p>
-        <p><a href="https://ionicframework.com">#MadeWithIONIC</a></p>
-        <hr/>
-        <p><a href="https://buckdevment.wordpress.com">#MadeByBuckDevMent</a> </p>
+        <p>
+          <a href="https://twitter.com/arjs">#MadeWithARJS</a>
+        </p>
+        <p>
+          <a href="https://unity.com">#MadeWithUNITY</a>
+        </p>
+        <p>
+          <a href="https://ionicframework.com">#MadeWithIONIC</a>
+        </p>
+        <hr />
+        <p>
+          <a href="https://buckdevment.wordpress.com">#MadeByBuckDevMent</a>{" "}
+        </p>
       </IonContent>
     </IonPage>
   );
@@ -142,7 +150,7 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
 
 export default connect<OwnProps, {}, DispatchProps>({
   mapDispatchToProps: {
-    setHasSeenTutorial
+    setHasSeenTutorial,
   },
-  component: Tutorial
+  component: Tutorial,
 });

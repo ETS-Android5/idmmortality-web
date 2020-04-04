@@ -30,7 +30,7 @@ import { loadConfData } from "./data/sessions/sessions.actions";
 import {
   setIsLoggedIn,
   setUsername,
-  loadUserData
+  loadUserData,
 } from "./data/user/user.actions";
 import Account from "./pages/Account";
 import Login from "./pages/Login";
@@ -50,7 +50,7 @@ export const firebaseConfig = {
   storageBucket: "quantic-4d7b1.appspot.com",
   messagingSenderId: "339842177069",
   appId: "1:339842177069:web:e8eaa5829b3c056a3b40a4",
-  measurementId: "G-PXT59L0TH4"
+  measurementId: "G-PXT59L0TH4",
 };
 
 const App: React.FC = () => {
@@ -81,7 +81,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
   setIsLoggedIn,
   setUsername,
   loadConfData,
-  loadUserData
+  loadUserData,
 }) => {
   useEffect(() => {
     loadUserData();
@@ -108,7 +108,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
               render={() => {
                 setIsLoggedIn(false);
                 setUsername(undefined);
-                return <Redirect to="/tabs" />;
+                return <Redirect to="/login" />;
               }}
             />
             <Route path="/" component={HomeOrTutorial} exact />
@@ -122,17 +122,17 @@ const IonicApp: React.FC<IonicAppProps> = ({
 export default App;
 
 const IonicAppConnected = connect<{}, StateProps, DispatchProps>({
-  mapStateToProps: state => ({
+  mapStateToProps: (state) => ({
     darkMode: state.user.darkMode,
-    sessions: state.data.sessions
+    sessions: state.data.sessions,
   }),
   mapDispatchToProps: {
     loadConfData,
     loadUserData,
     setIsLoggedIn,
-    setUsername
+    setUsername,
   },
-  component: IonicApp
+  component: IonicApp,
 });
 
 // Initialize Firebase

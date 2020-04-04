@@ -10,7 +10,7 @@ import {
   IonMenuToggle,
   IonTitle,
   IonToolbar,
-  IonToggle
+  IonToggle,
 } from "@ionic/react";
 import {
   hammer,
@@ -22,7 +22,9 @@ import {
   personAdd,
   compass,
   globe,
-  information
+  information,
+  contacts,
+  informationCircle,
 } from "ionicons/icons";
 import React, { useState } from "react";
 import { connect } from "../data/connect";
@@ -30,33 +32,27 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { setDarkMode } from "../data/user/user.actions";
 
 const routes = {
-  appPages: [
-    { title: "Quantic-Game", path: "/quanticgame", icon: globe }
-    /* 
-    { title: 'Speakers', path: '/tabs/speakers', icon: contacts },
-    { title: 'Map', path: '/tabs/map', icon: map },
-    { title: 'About', path: '/tabs/about', icon: informationCircle }*/
-  ],
+  // appPages: [{ title: "Quantic-Game", path: "/quanticgame", icon: globe }],
   loggedInPages: [
     { title: "Account", path: "/account", icon: person },
     { title: "Support", path: "/support", icon: help },
-    { title: "Logout", path: "/logout", icon: logOut }
+    { title: "Logout", path: "/logout", icon: logOut },
   ],
   loggedOutPages: [
     { title: "Login", path: "/login", icon: logIn },
     { title: "Support", path: "/support", icon: help },
-    { title: "Signup", path: "/signup", icon: personAdd }
+    { title: "Signup", path: "/signup", icon: personAdd },
   ],
   loggedInProjectPages: [
     { title: "My Community Projects", path: "/account", icon: compass },
     { title: "Games", path: "/account", icon: help },
-    { title: "Templates", path: "/account", icon: map }
+    { title: "Templates", path: "/account", icon: map },
   ],
   loggedOutProjectPages: [
     { title: "Community Projects", path: "/login", icon: globe },
     { title: "Quantic Games", path: "/login", icon: help },
-    { title: "Information", path: "/login", icon: information }
-  ]
+    { title: "Information", path: "/login", icon: information },
+  ],
 };
 
 interface Pages {
@@ -80,14 +76,14 @@ const Menu: React.FC<MenuProps> = ({
   darkMode,
   history,
   isAuthenticated,
-  setDarkMode
+  setDarkMode,
 }) => {
   const [disableMenu, setDisableMenu] = useState(false);
 
   function renderlistItems(list: Pages[]) {
     return list
-      .filter(route => !!route.path)
-      .map(p => (
+      .filter((route) => !!route.path)
+      .map((p) => (
         <IonMenuToggle key={p.title} auto-hide="false">
           <IonItem button routerLink={p.path} routerDirection="none">
             <IonIcon slot="start" icon={p.icon} />
@@ -106,7 +102,7 @@ const Menu: React.FC<MenuProps> = ({
       </IonHeader>
       <IonContent class="outer-content">
         <IonList>
-          <IonListHeader>What is Quantic</IonListHeader>
+          <IonListHeader>Welcome</IonListHeader>
           <IonItem
             onClick={() => {
               setDisableMenu(false);
@@ -115,14 +111,6 @@ const Menu: React.FC<MenuProps> = ({
           >
             <IonIcon slot="start" icon={hammer} />
             Quantic Tutorial
-          </IonItem>
-          <IonItem
-            onClick={() => {
-              history.push("/quanticgame");
-            }}
-          >
-            <IonIcon slot="start" icon={globe} />
-            Quantic-Game
           </IonItem>
         </IonList>
         <IonList>
@@ -143,14 +131,14 @@ const Menu: React.FC<MenuProps> = ({
 };
 
 export default connect<{}, StateProps, {}>({
-  mapStateToProps: state => ({
+  mapStateToProps: (state) => ({
     darkMode: state.user.darkMode,
-    isAuthenticated: state.user.isLoggedin
+    isAuthenticated: state.user.isLoggedin,
   }),
   mapDispatchToProps: {
-    setDarkMode
+    setDarkMode,
   },
-  component: withRouter(Menu)
+  component: withRouter(Menu),
 });
 
 /**
