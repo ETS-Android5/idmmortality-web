@@ -1,15 +1,16 @@
 "use strict";
-
 const CACHE_NAME = "static-cache-v2";
 const DATA_CACHE_NAME = "data-cache-v1";
+
 const FILES_TO_CACHE = [
   "/",
   "/index.html",
   "/manifest.json",
-  "/serviceWorker.js",
+  "/service-worker.js",
 ];
+
 self.addEventListener("install", (evt) => {
-  console.log("[ServiceWorker] Install");
+  console.log("[ServiceWorker] Install from quantic");
 
   evt.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
@@ -44,7 +45,7 @@ self.addEventListener("activate", (evt) => {
 self.addEventListener("fetch", (evt) => {
   console.log("[ServiceWorker] Fetch", evt.request.url);
   //sustituimos el request por las rutas reales que usamos ahora
-  if (evt.request.url.includes("/public/", "/build/")) {
+  if (evt.request.url.includes("/public/", "/Build/")) {
     //|| evt.request.url.includes('/Build/')) {
     console.log("[Service Worker] Fetch (data)", evt.request.url);
     evt.respondWith(
