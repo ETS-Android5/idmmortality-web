@@ -32,7 +32,9 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { setDarkMode } from "../data/user/user.actions";
 
 const routes = {
-  // appPages: [{ title: "Quantic-Game", path: "/quanticgame", icon: globe }],
+  appPages: [
+    { title: "Quantic-Game-Route?", path: "/quanticgame", icon: globe },
+  ],
   loggedInPages: [
     { title: "Account", path: "/account", icon: person },
     { title: "Support", path: "/support", icon: help },
@@ -112,6 +114,7 @@ const Menu: React.FC<MenuProps> = ({
             <IonIcon slot="start" icon={hammer} />
             Quantic Tutorial
           </IonItem>
+          {renderlistItems(routes.appPages)}
         </IonList>
         <IonList>
           <IonListHeader>Projects</IonListHeader>
