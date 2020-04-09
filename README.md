@@ -18,6 +18,15 @@
 9- En el start cargamos correctamente el install y el sw de cacheo etc. Revisar con el nuevo
 eject como funciona react scripts y como esto nos permite configurar el sistema de compilación de del fichero build.
 
+10- La estructura lógica de la página está fallando por razones obvias, no hemos estudiado la original y por tanto los flujos de datos y de vistas chocan, ahora que rompiendo hemos aprendido como está estructurado
+empezamos a darle sentido al clonado.
+También es clave que entendamos como se estructurará la demo tutorial con respecto al contenido html base,
+y como se verá reflejado en un juego de demostración propio si creas tu propio proyecto y tu propia template.
+
+11- El slider debe ser mas infografico y así el quantic game podria ser mas una demo con visionado de ejemplo.
+
+12- debido a la complejidad de la demo realizamos una integración sencilla con unity del demo game actual con image capturing y a correr.
+
 ## Github Pages Demo - Firabase Hosting Demo
 
 En principio la aplicación viene preparada para que la usemos con firebase, pero ademas me gustaría tenerla replicada en github-pages.
