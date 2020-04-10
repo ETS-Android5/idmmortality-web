@@ -19,6 +19,11 @@ const QuanticGame: React.FC<QuanticGameProps> = () => {
   return (
     <Fragment>
       <IonContent>Unityection</IonContent>
+      <p>
+        concluision, las puñeteras tabs que habia antes se renderixzan desde el
+        menu por eso esto no carga bien fixear inyectar unity poner un agujero
+        para reventar minions.
+      </p>
     </Fragment>
   );
 };

@@ -97,7 +97,7 @@ const IonicApp: React.FC<IonicAppProps> = ({
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/quanticgame" component={QuanticGame} />
+            <Route path="/tabs" component={MainTabs} />
             <Route path="/account" component={Account} />
             <Route path="/login" component={Login} />
             <Route path="/signup" component={Signup} />

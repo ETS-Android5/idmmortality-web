@@ -11,20 +11,20 @@ export const initialState: AppState = {
     allTracks: [],
     filteredTracks: [],
     mapCenterId: 0,
-    loading: false
+    loading: false,
   },
   user: {
     hasSeenTutorial: false,
     darkMode: true,
     isLoggedin: false,
     isLoggedout: true,
-    loading: false
-  }
+    loading: false,
+  },
 };
 
 export const reducers = combineReducers({
   data: sessionsReducer,
-  user: userReducer
+  user: userReducer,
 });
 
 export type AppState = ReturnType<typeof reducers>;
