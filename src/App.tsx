@@ -40,7 +40,9 @@ import Tutorial from "./pages/Tutorial";
 import HomeOrTutorial from "./components/HomeOrTutorial";
 import { Session } from "./models/Session";
 import * as firebase from "firebase/app";
-import QuanticGame from "./pages/QuanticGame";
+import Projects from "./pages/Projects";
+import Games from "./pages/Games";
+import Templates from "./pages/Templates";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD6NGOyMliRPDOt6t-38vzjzUko-yJk5G8",
@@ -103,6 +105,9 @@ const IonicApp: React.FC<IonicAppProps> = ({
             <Route path="/signup" component={Signup} />
             <Route path="/support" component={Support} />
             <Route path="/tutorial" component={Tutorial} />
+            <Route path="/projects" component={Projects} />
+            <Route path="/games" component={Games} />
+            <Route path="/templates" component={Templates} />
             <Route
               path="/logout"
               render={() => {

@@ -1,13 +1,14 @@
 import React  from 'react';
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { Route, Redirect } from 'react-router';
-import { calendar, contacts, map, informationCircle } from 'ionicons/icons';
+import { calendar, contacts, map, informationCircle, logoGameControllerA } from 'ionicons/icons';
 import SchedulePage from './SchedulePage';
 import SpeakerList from './SpeakerList';
 import SpeakerDetail from './SpeakerDetail';
 import SessionDetail from './SessionDetail';
 import MapView from './MapView';
 import About from './About';
+import UnityLoader from './UnityLoader';
 
 interface MainTabsProps { }
 
@@ -21,6 +22,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
           Using the render method prop cuts down the number of renders your components will have due to route changes.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.        
         */}
+        <Route path="/tabs/unityloader" render={()=> <UnityLoader/>} exact={true} />
         <Route path="/tabs/schedule" render={() => <SchedulePage />} exact={true} />
         <Route path="/tabs/speakers" render={() => <SpeakerList />} exact={true} />
         <Route path="/tabs/speakers/:id" component={SpeakerDetail} exact={true} />
@@ -45,6 +47,10 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         <IonTabButton tab="about" href="/tabs/about">
           <IonIcon icon={informationCircle} />
           <IonLabel>About</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="unityloader" href="/tabs/unityloader">
+          <IonIcon icon={logoGameControllerA} />
+          <IonLabel>Play</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
