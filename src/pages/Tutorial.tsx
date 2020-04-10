@@ -30,7 +30,7 @@ const Tutorial: React.FC<TutorialProps> = ({ history, setHasSeenTutorial }) => {
 
   const startApp = async () => {
     await setHasSeenTutorial(true);
-    history.push("/quanticgame");
+    history.push("/tabs/schedule");
   };
 
   const handleSlideChangeStart = () => {

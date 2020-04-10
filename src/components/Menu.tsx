@@ -32,7 +32,7 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { setDarkMode } from "../data/user/user.actions";
 
 const routes = {
-  appPages: [{ title: "Quantic-Game-Route?", path: "/tabs", icon: globe }],
+  appPages: [{ title: "Quantic-Demos", path: "/tabs", icon: globe }],
   loggedInPages: [
     { title: "Account", path: "/account", icon: person },
     { title: "Support", path: "/support", icon: help },
