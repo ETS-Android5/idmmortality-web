@@ -43,6 +43,7 @@ import * as firebase from "firebase/app";
 import Projects from "./pages/Projects";
 import Games from "./pages/Games";
 import Templates from "./pages/Templates";
+import CameraPage from "./pages/CameraPage"
 
 export const firebaseConfig = {
   apiKey: "AIzaSyD6NGOyMliRPDOt6t-38vzjzUko-yJk5G8",
@@ -75,7 +76,7 @@ interface DispatchProps {
   setUsername: typeof setUsername;
 }
 
-interface IonicAppProps extends StateProps, DispatchProps {}
+interface IonicAppProps extends StateProps, DispatchProps { }
 
 const IonicApp: React.FC<IonicAppProps> = ({
   darkMode,
@@ -94,34 +95,35 @@ const IonicApp: React.FC<IonicAppProps> = ({
   return sessions.length === 0 ? (
     <div></div>
   ) : (
-    <IonApp className={`${darkMode ? "dark-theme" : ""}`}>
-      <IonReactRouter>
-        <IonSplitPane contentId="main">
-          <Menu />
-          <IonRouterOutlet id="main">
-            <Route path="/tabs" component={MainTabs} />
-            <Route path="/account" component={Account} />
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={Signup} />
-            <Route path="/support" component={Support} />
-            <Route path="/tutorial" component={Tutorial} />
-            <Route path="/projects" component={Projects} />
-            <Route path="/games" component={Games} />
-            <Route path="/templates" component={Templates} />
-            <Route
-              path="/logout"
-              render={() => {
-                setIsLoggedIn(false);
-                setUsername(undefined);
-                return <Redirect to="/login" />;
-              }}
-            />
-            <Route path="/" component={HomeOrTutorial} exact />
-          </IonRouterOutlet>
-        </IonSplitPane>
-      </IonReactRouter>
-    </IonApp>
-  );
+      <IonApp className={`${darkMode ? "dark-theme" : ""}`}>
+        <IonReactRouter>
+          <IonSplitPane contentId="main">
+            <Menu />
+            <IonRouterOutlet id="main">
+              <Route path="/tabs" component={MainTabs} />
+              <Route path="/account" component={Account} />
+              <Route path="/login" component={Login} />
+              <Route path="/signup" component={Signup} />
+              <Route path="/support" component={Support} />
+              <Route path="/tutorial" component={Tutorial} />
+              <Route path="/projects" component={Projects} />
+              <Route path="/games" component={Games} />
+              <Route path="/templates" component={Templates} />
+              <Route path="/camera" component={CameraPage} />
+              <Route
+                path="/logout"
+                render={() => {
+                  setIsLoggedIn(false);
+                  setUsername(undefined);
+                  return <Redirect to="/login" />;
+                }}
+              />
+              <Route path="/" component={HomeOrTutorial} exact />
+            </IonRouterOutlet>
+          </IonSplitPane>
+        </IonReactRouter>
+      </IonApp>
+    );
 };
 
 export default App;

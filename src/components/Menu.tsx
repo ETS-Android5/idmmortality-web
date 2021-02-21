@@ -23,6 +23,7 @@ import {
   compass,
   globe,
   information,
+  camera,
   contacts,
   informationCircle,
 } from "ionicons/icons";
@@ -32,7 +33,9 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { setDarkMode } from "../data/user/user.actions";
 
 const routes = {
-  appPages: [{ title: "Quantic-Demos", path: "/tabs", icon: globe }],
+  appPages: [{ title: "Quantic-Demos", path: "/tabs", icon: globe },
+{title: "Camera", path: "/camera", icon: camera}
+],
   loggedInPages: [
     { title: "Account", path: "/account", icon: person },
     { title: "Support", path: "/support", icon: help },

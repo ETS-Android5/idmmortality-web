@@ -139,3 +139,11 @@ En principio la aplicación viene preparada para que la usemos con firebase, per
 "appendUserAgent": "string to append for Electron",
 }
 }
+
+## Camera capture
+
+https://www.joshmorony.com/using-the-camera-api-in-a-pwa-with-capacitor/
+
+The idea is: La idea de este proyecto es aprovechar que estamos en una PWI y que según este artículo podemos emplear el componente de cámara dentro de una pública con capacitor, Es importante entender que esta aplicación es web por tanto de manera ideal lo lógico es que antes de utilizar la aplicación al aceptar el permiso también acepto es la instalación de la app W en el dispositivo.
+
+La idea de esta PWI es básicamente capturar todas las imágenes que irán al servidor de SFM, Y posteriormente todas estas imágenes se procesarán y generarán un archivo clip o menos que servirá para visualizar el espacio fotografiado.
