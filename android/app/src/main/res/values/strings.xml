@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Quantic-React</string>
+    <string name="title_activity_main">Quantic-React</string>
+    <string name="package_name">buckdevment.quantic.react</string>
+    <string name="custom_url_scheme">buckdevment.quantic.react</string>
+</resources>
