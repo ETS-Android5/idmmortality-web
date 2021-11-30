@@ -20,7 +20,7 @@ interface SpeakerDetailProps extends OwnProps, StateProps, DispatchProps {};
 const SpeakerDetail: React.FC<SpeakerDetailProps> = ({ speaker }) => {
   
   if (!speaker) {
-    return <div>Speaker not found</div>
+    return <div>Member not found</div>
   }
 
   return (

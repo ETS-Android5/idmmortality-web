@@ -33,9 +33,9 @@ import { RouteComponentProps, withRouter } from "react-router";
 import { setDarkMode } from "../data/user/user.actions";
 
 const routes = {
-  appPages: [{ title: "Quantic-Demos", path: "/tabs", icon: globe },
-{title: "Camera", path: "/camera", icon: camera}
-],
+  appPages: [{ title: "First Steps", path: "/tabs", icon: globe },
+  { title: "Camera", path: "/camera", icon: camera }
+  ],
   loggedInPages: [
     { title: "Account", path: "/account", icon: person },
     { title: "Support", path: "/support", icon: help },
@@ -50,12 +50,10 @@ const routes = {
     { title: "My Community Projects", path: "/projects", icon: compass },
     { title: "Games", path: "/games", icon: help },
     { title: "Templates", path: "/templates", icon: map },
+    { title: "Community Projects", path: "/projects", icon: globe },
+    { title: "Information", path: "/information", icon: information },
   ],
-  loggedOutProjectPages: [
-    { title: "Community Projects", path: "/login", icon: globe },
-    { title: "Quantic Games", path: "/login", icon: help },
-    { title: "Information", path: "/login", icon: information },
-  ],
+  loggedOutProjectPages: [ ],
 };
 
 interface Pages {
@@ -73,7 +71,7 @@ interface DispatchProps {
   setDarkMode: typeof setDarkMode;
 }
 
-interface MenuProps extends RouteComponentProps, StateProps, DispatchProps {}
+interface MenuProps extends RouteComponentProps, StateProps, DispatchProps { }
 
 const Menu: React.FC<MenuProps> = ({
   darkMode,
@@ -100,7 +98,7 @@ const Menu: React.FC<MenuProps> = ({
     <IonMenu type="overlay" disabled={disableMenu} contentId="main">
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Quantic</IonTitle>
+          <IonTitle>IDMMORTALITY - ONLINE</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent class="outer-content">
@@ -113,7 +111,7 @@ const Menu: React.FC<MenuProps> = ({
             }}
           >
             <IonIcon slot="start" icon={hammer} />
-            Quantic Tutorial
+            Start
           </IonItem>
           {renderlistItems(routes.appPages)}
         </IonList>
@@ -158,9 +156,9 @@ export default connect<{}, StateProps, {}>({
 /**
  * Seguir con la parte de signup y login real de firebase,  la parte visual de darkmode y las cuentas solo
  * se puede toquitear cuando realmente tenga dominado mas el codigo de html react tsx e ionic.
- * 
+ *
  * Por ahora buscamos funcionalidad.
- * 
+ *
  * No tutorial shit
  *  <IonList>
           <IonListHeader>Tutorial</IonListHeader>
@@ -174,7 +172,7 @@ export default connect<{}, StateProps, {}>({
             Show Tutorial
           </IonItem>
         </IonList>
- * 
+ *
  * DARRK MODE ON HEADER
  * <IonList>
           <IonItem>
@@ -185,15 +183,15 @@ export default connect<{}, StateProps, {}>({
             />
           </IonItem>
         </IonList>
- * 
+ *
  * PAGES when firebase templates and apps were available
  *  <IonList>
           <IonListHeader>Navigate</IonListHeader>
           {renderlistItems(routes.appPages)}
         </IonList>
- * 
- * 
- * 
- * 
- * 
+ *
+ *
+ *
+ *
+ *
  */

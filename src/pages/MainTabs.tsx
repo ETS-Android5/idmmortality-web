@@ -38,7 +38,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         </IonTabButton>
         <IonTabButton tab="speakers" href="/tabs/speakers">
           <IonIcon icon={contacts} />
-          <IonLabel>Speakers</IonLabel>
+          <IonLabel>Team</IonLabel>
         </IonTabButton>
         <IonTabButton tab="map" href="/tabs/map">
           <IonIcon icon={map} />
@@ -46,7 +46,7 @@ const MainTabs: React.FC<MainTabsProps> = () => {
         </IonTabButton>
         <IonTabButton tab="about" href="/tabs/about">
           <IonIcon icon={informationCircle} />
-          <IonLabel>About</IonLabel>
+          <IonLabel>Goals</IonLabel>
         </IonTabButton>
         <IonTabButton tab="unityloader" href="/tabs/unityloader">
           <IonIcon icon={logoGameControllerA} />

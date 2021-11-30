@@ -21,13 +21,13 @@ import "./css/About.scss";
 import { calendar, pin, more } from "ionicons/icons";
 import AboutPopover from "../components/AboutPopover";
 
-interface AboutProps {}
+interface AboutProps { }
 
 const About: React.FC<AboutProps> = () => {
   const [showPopover, setShowPopover] = useState(false);
   const [popoverEvent, setPopoverEvent] = useState();
 
-  const presentPopover = (e: React.MouseEvent) => {
+  const presentPopover = (e: any) => {
     setPopoverEvent(e.nativeEvent);
     setShowPopover(true);
   };
