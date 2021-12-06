@@ -1,5 +1,14 @@
 # Quantic React Conference App
 
+## Revisar este readme 
+
+## Rediseñar la aplicacion para los objetivos básicos de un usuario
+- Crear dashboard de datos de usuario
+- conectar datos persistentes via firebase
+
+
+# "Discard"
+
 ## Issues y TODOs
 
 1 - Añadir i18n - branched
