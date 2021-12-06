@@ -10,6 +10,7 @@ const { Storage } = Plugins;
 const locationsUrl = "/assets/data/locations.json";
 const sessionsUrl = "/assets/data/sessions.json";
 const speakersUrl = "/assets/data/speakers.json";
+const complemetsUrl = "/assets/data/complements.json";
 
 const HAS_LOGGED_IN = "hasLoggedIn";
 const HAS_LOGGED_OUT = "hasLoggedOut";
@@ -68,6 +69,17 @@ export const getUserData = async () => {
   };
   return data;
 };
+
+// NEW feature with functions that fetch data from firebase
+
+/**
+ * Function that brings all the data from firebase user account, could be user data updated or something
+ * relationed with it meta world. ///// Thing about this data model structure.
+ * The idea is that all the data is fetched from firebase and stored in the local storage. This is the initial
+ * idea, but it could be changed to a more complex data model.
+ * @param type Of data to fectch
+ */
+export const fetchDataFromFirebase = async (type: any) => {}
 
 export const setIsLoggedInData = async (isLoggedIn: boolean) => {
   await Storage.set({ key: HAS_LOGGED_IN, value: JSON.stringify(isLoggedIn) });

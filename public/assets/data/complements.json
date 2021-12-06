@@ -1,0 +1,72 @@
+[
+  {
+    "type": "SALUD CARDIOVASCULAR",
+    "complements": ["Ns Omega 3 Chía", "Ns Lipiben", "Ns Lipiben+ Q10"],
+    "type": "SALUD FEMENINA",
+    "complements": [
+      "Ns Menopausia Día & Noche",
+      "NS Gineprotect Femibiotic",
+      "Ns Cispren",
+      "Ns Cispren Infusión",
+      "Ns Cispren forte",
+      "Ns Femigyn"
+    ],
+    "type": "DIETA Y SALUD",
+    "complements": [
+      "Ns Saciaplen Total",
+      "Ns Drenante Vitaminado",
+      "Ns Lipoless",
+      "Ns Lipoless infusión",
+      "Ns Lipoless Actividad",
+      "Ns Lipodrevit Complex 4",
+      "Ns Lipocarbo Bi-Effect"
+    ],
+    "type": "SALUD DEL SUEÑO",
+    "complements": [
+      "Ns Melatonina",
+      "Ns Soñaben Bi-Effect",
+      "Ns Soñaben Total",
+      "Ns Melatonina gotas",
+      "Ns Melatonina Go",
+      "Ns Equirelax",
+      "Ns Equirelax infusión"
+    ],
+    "type": "TRACTO DIGESTIVO",
+    "complements": [
+      "Ns Fibra",
+      "Ns Digestconfort Gases",
+      "Ns Laxconfort infusión",
+      "Ns Digestconfort infusión",
+      "Ns Digestconfort Acidez"
+    ],
+    "type": "ENZIMAS DIGESTIVAS",
+    "complements": ["Ns Lactoben", "Ns Digestconfort Lactoben FORTE"],
+    "type": "PROBIÓTICOS",
+    "complements": [
+      "Ns Florabiotic",
+      "Ns Florabiotic Gotas",
+      "Ns Florabiotic Instant",
+      "Ns Florabiotic Kids",
+      "Ns Florabiotic Lax",
+      "Ns Suerobiotic Neutro",
+      "Ns Suerobiotic Fresa",
+      "Ns Florabiotic Pylocontrol"
+    ],
+    "type": "ENERGÍA Y VITALIDAD",
+    "complements": [
+      "Ns Vitans Colágeno +",
+      "Ns Vitans Magnesio+",
+      "Ns Vitans Magnesio+ 400 Citrato",
+      "Ns Vitans Energy+",
+      "Ns Vitans Vitalidad A-Z",
+      "Ns Vitans Vitalidad A-Z Senior",
+      "Ns Vitans Vitamina C+Zinc",
+      "Ns Vitans Triptófano+",
+      "Ns Vitans Articulaciones Forte",
+      "Ns Vitans Cogni+",
+      "Ns Vitans Coenzima Q10",
+      "Ns Vitans Articulaciones Flex",
+      "Ns Vitans Estrés"
+    ]
+  }
+]

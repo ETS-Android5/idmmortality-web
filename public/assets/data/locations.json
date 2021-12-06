@@ -19,5 +19,11 @@
     "name": "Afterparty - Brocach Irish Pub",
     "lat": 43.07336,
     "lng": -89.38335
+  },
+  {
+    "id": 5,
+    "name": "Online",
+    "lat": 0,
+    "lng": 0
   }
 ]
