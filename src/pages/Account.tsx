@@ -1,29 +1,63 @@
-import React, { useState } from 'react';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonPage, IonButtons, IonMenuButton, IonList, IonItem, IonAlert } from '@ionic/react';
-import './Account.scss';
-import { setUsername } from '../data/user/user.actions';
-import { connect } from '../data/connect';
-import { RouteComponentProps } from 'react-router';
+import React, { useState } from "react";
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonPage,
+  IonButtons,
+  IonMenuButton,
+  IonList,
+  IonItem,
+  IonAlert
+} from "@ionic/react";
+import "./css/Account.scss";
+import {
+  setUsername,
+  setEmail,
+  setPassword,
+  setPicture,
+  logoutUser
+} from "../data/user/user.actions";
+import { connect } from "../data/connect";
+import { RouteComponentProps } from "react-router";
 
-interface OwnProps extends RouteComponentProps { }
+interface OwnProps extends RouteComponentProps {}
 
 interface StateProps {
   username?: string;
+  email?: string;
+  password?: string;
+  picture?: string;
 }
 
 interface DispatchProps {
   setUsername: typeof setUsername;
+  setPassword: typeof setPassword;
+  setEmail: typeof setEmail;
+  setPicture: typeof setPicture;
 }
 
-interface AccountProps extends OwnProps, StateProps, DispatchProps { }
+interface AccountProps extends OwnProps, StateProps, DispatchProps {}
 
-const Account: React.FC<AccountProps> = ({ setUsername, username }) => {
-
-  const [showAlert, setShowAlert] = useState(false);
+const Account: React.FC<AccountProps> = ({
+  setUsername,
+  setEmail,
+  setPassword,
+  setPicture,
+  username,
+  email,
+  password,
+  picture
+}) => {
+  // como showAlert es un hook que tira de booleanos , hacemos el check sencillo con clicked y alert
+  const [showAlertUsername, setShowAlertUsername] = useState(false);
+  const [showAlertEmail, setShowAlertEmail] = useState(false);
+  const [showAlertPassword, setShowAlertPassword] = useState(false);
 
   const clicked = (text: string) => {
     console.log(`Clicked ${text}`);
-  }
+  };
 
   return (
     <IonPage id="account-page">
@@ -36,52 +70,117 @@ const Account: React.FC<AccountProps> = ({ setUsername, username }) => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        {username &&
-          (<div className="ion-padding-top ion-text-center">
-            <img src="https://www.gravatar.com/avatar?d=mm&s=140" alt="avatar" />
-            <h2>{ username }</h2>
+        {username && email && password && (
+          <div className="ion-padding-top ion-text-center">
+            <img src={picture || "assets/img/appicon.svg"} alt="avatar" />
+            <h2>{username}</h2>
             <IonList inset>
-              <IonItem onClick={() => clicked('Update Picture')}>Update Picture</IonItem>
-              <IonItem onClick={() => setShowAlert(true)}>Change Username</IonItem>
-              <IonItem onClick={() => clicked('Change Password')}>Change Password</IonItem>
-              <IonItem routerLink="/support" routerDirection="none">Support</IonItem>
-              <IonItem routerLink="/logout" routerDirection="none">Logout</IonItem>
+              <IonItem onClick={() => alert(picture)}>Update Picture</IonItem>
+              <IonItem onClick={() => setShowAlertEmail(true)}>
+                Change Email
+              </IonItem>
+              <IonItem onClick={() => setShowAlertUsername(true)}>
+                Change Username
+              </IonItem>
+              <IonItem onClick={() => setShowAlertPassword(true)}>
+                Change Password
+              </IonItem>
+              <IonItem routerLink="/support" routerDirection="none">
+                Support
+              </IonItem>
+              <IonItem
+                routerLink="/logout"
+                routerDirection="none"
+                onClick={logoutUser()}
+              >
+                Logout
+              </IonItem>
             </IonList>
-          </div>)
-        }
+          </div>
+        )}
       </IonContent>
       <IonAlert
-        isOpen={showAlert}
+        isOpen={showAlertUsername}
         header="Change Username"
         buttons={[
-          'Cancel',
+          "Cancel",
           {
-            text: 'Ok',
-            handler: (data) => {
-              setUsername(data.username);
+            text: "Ok",
+            handler: () => {
+              setUsername(username);
             }
           }
         ]}
         inputs={[
           {
-            type: 'text',
-            name: 'username',
+            type: "text",
+            name: "username",
             value: username,
-            placeholder: 'username'
+            placeholder: "username"
           }
         ]}
-        onDidDismiss={() => setShowAlert(false)}
+        onDidDismiss={() => setShowAlertUsername(false)}
+      />
+      <IonAlert
+        isOpen={showAlertEmail}
+        header="Change Email"
+        buttons={[
+          "Cancel",
+          {
+            text: "Ok",
+            handler: () => {
+              setEmail(email);
+            }
+          }
+        ]}
+        inputs={[
+          {
+            type: "text",
+            name: "Email",
+            value: email,
+            placeholder: "Email"
+          }
+        ]}
+        onDidDismiss={() => setShowAlertEmail(false)}
+      />
+      <IonAlert
+        isOpen={showAlertPassword}
+        header="Change Field"
+        buttons={[
+          "Cancel",
+          {
+            text: "Ok",
+            handler: () => {
+              setPassword(password);
+            }
+          }
+        ]}
+        inputs={[
+          {
+            type: "text",
+            name: "password",
+            value: password,
+            placeholder: "password"
+          }
+        ]}
+        onDidDismiss={() => setShowAlertPassword(false)}
       />
     </IonPage>
   );
 };
 
 export default connect<OwnProps, StateProps, DispatchProps>({
-  mapStateToProps: (state) => ({
-    username: state.user.username
+  mapStateToProps: state => ({
+    username: state.user.username,
+    email: state.user.email,
+    password: state.user.password,
+    picture: state.user.picture
   }),
   mapDispatchToProps: {
     setUsername,
+    setPassword,
+    setEmail,
+    setPicture
   },
   component: Account
-})
+});

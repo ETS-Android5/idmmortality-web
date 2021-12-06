@@ -1,16 +1,40 @@
 # Quantic React Conference App
 
+## Revisar este readme 
+
+## Rediseñar la aplicacion para los objetivos básicos de un usuario
+- Crear dashboard de datos de usuario
+- conectar datos persistentes via firebase
+
+
+# "Discard"
+
 ## Issues y TODOs
 
-1 - Añadir i18n ==> Check https://developer.mozilla.org/es/docs/Mozilla/Add-ons/WebExtensions/API/i18n
-
+1 - Añadir i18n - branched
 2 - Modificar la carga de tutorial desde el menú o quitarla para que no desaparezca el menú lateral
-3 - Setear el modo oscuro por defecto y colocarlo en un botoncito tipo majoledesma, que cosa mas bonita ella.
+
+3 - Setear el modo oscuro por defecto ==> DONE.
 
 4 - Una vez añadido i18n para N idiomas, configurar el signup y el login con firebase.
 5 - Modificar el flujo de usuarios y sesiones , a usuarios, proyectos, templates y tags.
 
 6 - Intentar implementar Quantic a nivel puramente funcional con una arquitectura agnostica al frontend, mediante el uso de Stencil.
+
+7- Añadir registro persistente con firebase usando 8 - branched ==> DOING
+8- Añadir inicio de sesión con cuentas de otros serivios
+
+9- En el start cargamos correctamente el install y el sw de cacheo etc. Revisar con el nuevo
+eject como funciona react scripts y como esto nos permite configurar el sistema de compilación de del fichero build.
+
+10- La estructura lógica de la página está fallando por razones obvias, no hemos estudiado la original y por tanto los flujos de datos y de vistas chocan, ahora que rompiendo hemos aprendido como está estructurado
+empezamos a darle sentido al clonado.
+También es clave que entendamos como se estructurará la demo tutorial con respecto al contenido html base,
+y como se verá reflejado en un juego de demostración propio si creas tu propio proyecto y tu propia template.
+
+11- El slider debe ser mas infografico y así el quantic game podria ser mas una demo con visionado de ejemplo.
+
+12- debido a la complejidad de la demo realizamos una integración sencilla con unity del demo game actual con image capturing y a correr.
 
 ## Github Pages Demo - Firabase Hosting Demo
 
@@ -124,3 +148,11 @@ En principio la aplicación viene preparada para que la usemos con firebase, per
 "appendUserAgent": "string to append for Electron",
 }
 }
+
+## Camera capture
+
+https://www.joshmorony.com/using-the-camera-api-in-a-pwa-with-capacitor/
+
+The idea is: La idea de este proyecto es aprovechar que estamos en una PWI y que según este artículo podemos emplear el componente de cámara dentro de una pública con capacitor, Es importante entender que esta aplicación es web por tanto de manera ideal lo lógico es que antes de utilizar la aplicación al aceptar el permiso también acepto es la instalación de la app W en el dispositivo.
+
+La idea de esta PWI es básicamente capturar todas las imágenes que irán al servidor de SFM, Y posteriormente todas estas imágenes se procesarán y generarán un archivo clip o menos que servirá para visualizar el espacio fotografiado.

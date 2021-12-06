@@ -1,6 +1,6 @@
 export function combineReducers<R extends any>(reducers: R) {
   type keys = keyof typeof reducers;
-  type returnType = { [K in keys]: ReturnType<typeof reducers[K]> }
+  type returnType = { [K in keys]: ReturnType<typeof reducers[any]> }
   const combinedReducer = (state: any, action: any) => {
     const newState: returnType = {} as any;
     const keys = Object.keys(reducers);

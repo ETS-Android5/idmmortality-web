@@ -5,7 +5,7 @@ import { Speaker } from '../models/Speaker';
 import { Session } from '../models/Session';
 import { connect } from '../data/connect';
 import * as selectors from '../data/selectors';
-import './SpeakerList.scss';
+import './css/SpeakerList.scss';
 
 interface OwnProps { };
 
@@ -27,7 +27,7 @@ const SpeakerList: React.FC<SpeakerListProps> = ({ speakers, speakerSessions }) 
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Speakers</IonTitle>
+          <IonTitle>Team Members</IonTitle>
         </IonToolbar>
       </IonHeader>
 

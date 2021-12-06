@@ -4,7 +4,7 @@ import { connect } from '../data/connect';
 import { withRouter, RouteComponentProps } from 'react-router';
 import * as selectors from '../data/selectors';
 import { starOutline, star, share, cloudDownload } from 'ionicons/icons';
-import './SessionDetail.scss';
+import './css/SessionDetail.scss';
 import { Time } from '../components/Time';
 import { addFavorite, removeFavorite } from '../data/sessions/sessions.actions';
 import { Session } from '../models/Session';
@@ -26,7 +26,7 @@ type SessionDetailProps = OwnProps & StateProps & DispatchProps;
 const SessionDetail: React.FC<SessionDetailProps> = ({ session, addFavorite, removeFavorite, favoriteSessions }) => {
 
   if (!session) {
-    return <div>Session not found</div>
+    return <div>Goal not found</div>
   }
 
   const isFavorite = favoriteSessions.indexOf(session.id) > -1;
