@@ -10,10 +10,8 @@ import {
   IonMenuToggle,
   IonTitle,
   IonToolbar,
-  IonToggle,
 } from "@ionic/react";
 import {
-  hammer,
   help,
   logIn,
   logOut,
@@ -24,8 +22,6 @@ import {
   globe,
   information,
   camera,
-  contacts,
-  informationCircle,
 } from "ionicons/icons";
 import React, { useState } from "react";
 import { connect } from "../data/connect";
@@ -74,12 +70,10 @@ interface DispatchProps {
 interface MenuProps extends RouteComponentProps, StateProps, DispatchProps { }
 
 const Menu: React.FC<MenuProps> = ({
-  darkMode,
-  history,
   isAuthenticated,
   setDarkMode,
 }) => {
-  const [disableMenu, setDisableMenu] = useState(false);
+  
 
   function renderlistItems(list: Pages[]) {
     return list
@@ -95,7 +89,7 @@ const Menu: React.FC<MenuProps> = ({
   }
 
   return (
-    <IonMenu type="overlay" disabled={disableMenu} contentId="main">
+    <IonMenu type="overlay" contentId="main">
       <IonHeader>
         <IonToolbar>
           <IonTitle>IDMMORTALITY - ONLINE</IonTitle>
@@ -104,15 +98,6 @@ const Menu: React.FC<MenuProps> = ({
       <IonContent class="outer-content">
         <IonList>
           <IonListHeader>Welcome</IonListHeader>
-          <IonItem
-            onClick={() => {
-              setDisableMenu(false);
-              history.push("/tutorial");
-            }}
-          >
-            <IonIcon slot="start" icon={hammer} />
-            Start
-          </IonItem>
           {renderlistItems(routes.appPages)}
         </IonList>
         <IonList>
@@ -142,56 +127,3 @@ export default connect<{}, StateProps, {}>({
   },
   component: withRouter(Menu),
 });
-
-/**
- *  <IonItem>
-            <IonLabel>Dark Theme</IonLabel>
-            <IonToggle
-              checked={darkMode}
-              onClick={() => setDarkMode(!darkMode)}
-            />
-          </IonItem>
- */
-
-/**
- * Seguir con la parte de signup y login real de firebase,  la parte visual de darkmode y las cuentas solo
- * se puede toquitear cuando realmente tenga dominado mas el codigo de html react tsx e ionic.
- *
- * Por ahora buscamos funcionalidad.
- *
- * No tutorial shit
- *  <IonList>
-          <IonListHeader>Tutorial</IonListHeader>
-          <IonItem
-            onClick={() => {
-              setDisableMenu(false);
-              history.push("/tutorial");
-            }}
-          >
-            <IonIcon slot="start" icon={hammer} />
-            Show Tutorial
-          </IonItem>
-        </IonList>
- *
- * DARRK MODE ON HEADER
- * <IonList>
-          <IonItem>
-            <IonLabel>Dark Theme</IonLabel>
-            <IonToggle
-              checked={darkMode}
-              onClick={() => setDarkMode(!darkMode)}
-            />
-          </IonItem>
-        </IonList>
- *
- * PAGES when firebase templates and apps were available
- *  <IonList>
-          <IonListHeader>Navigate</IonListHeader>
-          {renderlistItems(routes.appPages)}
-        </IonList>
- *
- *
- *
- *
- *
- */
