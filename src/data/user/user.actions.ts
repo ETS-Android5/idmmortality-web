@@ -34,7 +34,7 @@ export const setData = (data: Partial<UserState>) =>
 export const logoutUser = () => async () => {
   await setIsLoggedInData(false);
   await setIsLoggedOutData(true);
-  logOutAuth();
+  // logOutAuth(); // review this issue with firebase
 };
 
 export const setIsLoggedIn = (loggedIn: boolean) => async (

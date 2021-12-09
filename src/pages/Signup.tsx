@@ -28,6 +28,11 @@ import { RouteComponentProps } from "react-router";
 import * as firebase from "firebase/app";
 // import { getAuth } from "../data/firebaseAuth";
 
+export const createUserStore = async (user: any) => {
+  console.log(firebase);
+  console.log('Use this for a firestore entry if not exists etc...', user.uid)
+}
+
 interface OwnProps extends RouteComponentProps {}
 
 interface DispatchProps {
@@ -89,7 +94,9 @@ const Signup: React.FC<SignupProps> = ({
       firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .then(async () => {
+        .then(async (newUserResponse) => {
+          console.log("newUser email", newUserResponse.user);
+          await createUserStore(newUserResponse.user);
           await setIsLoggedIn(true); // no usariamos setIsLoggedIn, usariamos un setSignedUp
           await setUsernameAction(username); // no usariamos esto, sino un setConfirmAccount con los datos del signup
           await setEmailAction(email);

@@ -34,6 +34,7 @@ import {
 import { connect } from "../data/connect";
 import { RouteComponentProps } from "react-router";
 import { GoogleLoginAuth, EmailPasswordLoginAuth } from "../data/firebaseAuth";
+import { createUserStore } from "./Signup";
 
 interface OwnProps extends RouteComponentProps {}
 
@@ -76,6 +77,7 @@ const Login: React.FC<LoginProps> = ({
         GoogleLoginAuth()
           .then(async result => {
             if (result.user) {
+              await createUserStore(result.user);
               await setIsLoggedIn(true);
               await setUsernameAction(String(result.user.displayName));
               await setPasswordAction("password");
@@ -110,7 +112,7 @@ const Login: React.FC<LoginProps> = ({
 
     if (username && password) {
       EmailPasswordLoginAuth(username, password)
-        .then(async () => {
+        .then(async (user) => {
           await setIsLoggedIn(true);
           await setUsernameAction(username); // we dont need this anymore, does we?
           await setPasswordAction(password);
